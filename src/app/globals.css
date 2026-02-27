@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fcfcfc;
+  --foreground: #1f2937;
+  --primary: #f06e42;
+  --primary-soft: #fdf1ec;
+  --accent-blue: #e0f2fe;
+  --accent-pink: #fce7f3;
+  --accent-green: #dcfce7;
+  --border-light: #e2e8f0;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-soft: var(--primary-soft);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-pink: var(--accent-pink);
+  --color-accent-green: var(--accent-green);
+  --color-border-light: var(--border-light);
+  --font-sans: var(--font-noto-sc);
+  --font-display: var(--font-zcool);
+  --font-brand: var(--font-plus-jakarta);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-noto-sc), sans-serif;
+  overflow-x: hidden;
+}
+
+.bg-grid-paper {
+  background-size: 24px 24px;
+  background-image:
+    linear-gradient(to right, rgb(0 0 0 / 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(0 0 0 / 0.03) 1px, transparent 1px);
+}
+
+.soft-dots-bg {
+  background:
+    radial-gradient(circle at 10% 10%, rgb(240 66 124 / 0.12) 0 4px, transparent 5px),
+    radial-gradient(circle at 88% 12%, rgb(79 143 240 / 0.14) 0 4px, transparent 5px),
+    radial-gradient(circle at 20% 88%, rgb(241 195 56 / 0.16) 0 5px, transparent 6px),
+    radial-gradient(circle at 82% 86%, rgb(139 92 246 / 0.12) 0 4px, transparent 5px),
+    #f8f6f6;
+}
+
+.login-soft-bg {
+  background:
+    radial-gradient(circle at 12% 18%, rgb(236 81 132 / 0.1) 0 20px, transparent 21px),
+    radial-gradient(circle at 86% 20%, rgb(236 81 132 / 0.08) 0 12px, transparent 13px),
+    radial-gradient(circle at 88% 84%, rgb(236 81 132 / 0.09) 0 28px, transparent 29px),
+    radial-gradient(circle at 18% 88%, rgb(236 81 132 / 0.08) 0 18px, transparent 19px),
+    #fffaf6;
+}
+
+.twodo-shadow {
+  box-shadow: 0 20px 40px -10px rgb(236 81 132 / 0.15);
+}
+
+.pin-top {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  background-color: #94a3b8;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 0.2);
+  transform: translateX(-50%);
+}

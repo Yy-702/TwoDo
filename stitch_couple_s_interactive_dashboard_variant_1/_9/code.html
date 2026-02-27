@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CoupleDo - 双人挑战</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f0427c",
+                        "primary-light": "#fcebf1", 
+                        "primary-dark": "#d62f66",
+                        "secondary": "#89616f",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221016",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2d161e",
+                        "text-main": "#181113",
+                        "text-muted": "#89616f",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-main antialiased min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-100 dark:border-white/5 bg-surface-light dark:bg-surface-dark px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<div class="size-8 flex items-center justify-center text-primary bg-primary-light dark:bg-primary/20 rounded-full">
+<span class="material-symbols-outlined text-2xl">favorite</span>
+</div>
+<h2 class="text-text-main dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">CoupleDo</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-text-main dark:text-gray-200 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Tasks</a>
+<a class="text-primary text-sm font-bold leading-normal" href="#">Challenges</a>
+<a class="text-text-main dark:text-gray-200 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Calendar</a>
+<a class="text-text-main dark:text-gray-200 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Profile</a>
+</nav>
+<div class="flex gap-3">
+<button class="flex size-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-background-light dark:bg-white/10 text-text-main dark:text-white hover:bg-primary-light dark:hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<div class="relative">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 ring-2 ring-primary/20" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBtwMTjP9B153FRkgx9dvBIe2AGA6Ed4UdhrurGRC8r2pTWXSmz1pA6gXo2COB6_9FtNmFIlQq-GjK47OVqasuBT56YdiPKOMJpPek6m2O4OUT6MVmjLNZTK6OEiSJQ3SQSi1oaPwox9Z9V-G91Sc3da4pRk7cgXLhm8td9ecQQJgraa5ZwK9-YDWWdYfeTK4hXd3mxwKU19kh9ZGBjsclKCdA8aTyKhWYk-O4MTf27CL21aViZZ1bHQ4zLtJb58rGtqItNgR5qy5p8");'>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-surface-light dark:bg-surface-dark rounded-full p-0.5">
+<div class="size-4 bg-green-500 rounded-full border-2 border-white dark:border-surface-dark"></div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col items-center justify-start py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full gap-8">
+<!-- Hero / Header Section -->
+<div class="text-center w-full max-w-2xl space-y-3 animate-fade-in-up">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-bold mb-2">
+<span class="material-symbols-outlined text-lg">local_fire_department</span>
+<span>连续挑战第 24 天</span>
+</div>
+<h1 class="text-text-main dark:text-white text-4xl md:text-5xl font-extrabold tracking-tight">每日双人挑战</h1>
+<p class="text-text-muted dark:text-gray-400 text-lg">完成今日小任务，让感情升温！</p>
+</div>
+<!-- Challenge Card -->
+<div class="w-full max-w-4xl bg-surface-light dark:bg-surface-dark rounded-[2.5rem] shadow-xl shadow-primary/5 border border-primary/10 overflow-hidden flex flex-col md:flex-row relative group">
+<!-- Illustration Side -->
+<div class="w-full md:w-1/2 relative bg-primary-light/50 dark:bg-primary/10 min-h-[300px] md:min-h-[450px] flex items-center justify-center p-8">
+<!-- Decorative background elements -->
+<div class="absolute top-10 left-10 size-16 bg-white/60 dark:bg-white/5 rounded-full blur-xl"></div>
+<div class="absolute bottom-10 right-10 size-24 bg-primary/20 rounded-full blur-2xl"></div>
+<div class="relative z-10 w-full h-full rounded-2xl overflow-hidden shadow-lg transform transition-transform duration-500 group-hover:scale-[1.02]" data-alt="Couple cooking dinner together happily" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAWxJ2k_nNtjarLwb7oSyPvVrJ2H6x-0h-bHjQX5D8s7MjWLzV8A73gMWX7y4DYjAiZOK9AMsLmw9N-3MeKoS8K-JoZx2dt4UzYcmznc8jYKtngIox6L1z9XXZEVzJ8zWHvwvhaDO74qmxZovZgini4LTVFCwtwd4Z-dO2s2UWHNAIqUu9MXAlI7zp1bTWBV3ukv3nJqizKWO1yQfP4ulFVSUVyiwXLC1j2_0DfTbUzqyYU6miwllHe7H5xKgWYVmTpF2lkV-N65HM_'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-6">
+<div class="bg-white/90 dark:bg-black/60 backdrop-blur-sm px-4 py-2 rounded-xl text-xs font-bold text-text-main dark:text-white shadow-sm flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-base">photo_camera</span>
+<span>Photo by CoupleDo</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Content Side -->
+<div class="w-full md:w-1/2 p-8 md:p-10 flex flex-col justify-center">
+<div class="flex items-center gap-3 mb-6">
+<div class="bg-primary/10 text-primary p-2 rounded-xl">
+<span class="material-symbols-outlined text-2xl">restaurant_menu</span>
+</div>
+<span class="text-sm font-bold text-text-muted dark:text-gray-400 uppercase tracking-wider">Today's Mission</span>
+</div>
+<h2 class="text-3xl md:text-4xl font-bold text-text-main dark:text-white mb-4 leading-tight">一起做晚餐</h2>
+<p class="text-text-muted dark:text-gray-400 text-lg leading-relaxed mb-8">
+                    放下手机，一起走进厨房。尝试共同制作一道新菜肴，享受切菜、烹饪和品尝的乐趣。
+                </p>
+<div class="bg-background-light dark:bg-white/5 rounded-2xl p-5 mb-8 border border-gray-100 dark:border-white/5">
+<div class="flex items-center justify-between mb-3">
+<span class="text-sm font-semibold text-text-main dark:text-gray-200">完成进度</span>
+<span class="text-sm font-bold text-primary">1/2</span>
+</div>
+<div class="flex items-center gap-4">
+<!-- Partner 1 (Done) -->
+<div class="relative group/avatar cursor-help">
+<div class="size-12 rounded-full border-4 border-primary p-0.5">
+<div class="w-full h-full rounded-full bg-cover bg-center" data-alt="User avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA9HrwqKZeEFPTmkHxh4geOPE-K5zdh0AIhwW51_XZJLT5Nx6_0K0r7aUWc3Kh8ow7W_yKT8nj8efIMRN2Gk8Tw2uulwJ0gohw59ZMZ6tKesNDdhd9ubbpyt0wc_sNdnl75mRl_NH6OVboNaMvMgO11qnjD8CTK7gWmm8Be_vwlj_jUZwzzjJiPv4Ptz85ebAXGX4rv0i9T8DqbLamQffGdtZUVpUXOmXYvxskgNKKWM2D4Pns7svjrdjsKtlljVeJv1vKg4zz56_UW');"></div>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-primary text-white rounded-full size-5 flex items-center justify-center border-2 border-white dark:border-surface-dark">
+<span class="material-symbols-outlined text-[12px]">check</span>
+</div>
+<span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs font-medium text-text-muted opacity-0 group-hover/avatar:opacity-100 transition-opacity whitespace-nowrap">You</span>
+</div>
+<!-- Connector -->
+<div class="flex-1 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+<div class="h-full w-1/2 bg-primary animate-pulse"></div>
+</div>
+<!-- Partner 2 (Pending) -->
+<div class="relative group/avatar grayscale opacity-60">
+<div class="size-12 rounded-full border-4 border-transparent bg-gray-200 dark:bg-gray-700 p-0.5">
+<div class="w-full h-full rounded-full bg-cover bg-center" data-alt="Partner avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDGT1sa1WTmjGaZ0Ks06RnNeQ2TqBhWysmCFdZOlETRx5hzIi2b35vlrwPRYesaHTKwFTDmARriaWO8nJi0uDx5tvLBzFqfbTK00Qsea17CH_ASrNjC1NlgOj4y3f1xh996OvlD6L69XI7fKVUcvEFanSw_dqYRogNcrUBr8uY0OUCHqNb7s23IOOYGrQGId6T_hS1cwvQh2f89gDWM15F1THn-UwN_qwhM8WFakqcnUPrRo4o_4BMVhPFCMWYImWTJfrYKjOQnL4ed');"></div>
+</div>
+<span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs font-medium text-text-muted opacity-0 group-hover/avatar:opacity-100 transition-opacity whitespace-nowrap">Partner</span>
+</div>
+</div>
+<p class="text-xs text-center text-text-muted mt-4">等待对方打卡...</p>
+</div>
+<div class="flex gap-4">
+<button class="flex-1 bg-primary hover:bg-primary-dark text-white text-base font-bold py-4 px-8 rounded-xl shadow-lg shadow-primary/30 transform transition active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">check_circle</span>
+<span>我已完成</span>
+</button>
+<button class="aspect-square bg-background-light dark:bg-white/10 text-text-muted hover:text-primary hover:bg-primary/10 rounded-xl flex items-center justify-center transition-colors w-[56px]">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Streak & History Section -->
+<div class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Streak Card -->
+<div class="md:col-span-2 bg-white dark:bg-surface-dark rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-white/5">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold text-text-main dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-500">hotel_class</span>
+                        成长花园
+                    </h3>
+<span class="text-sm text-text-muted bg-gray-100 dark:bg-white/5 px-3 py-1 rounded-full">Level 3</span>
+</div>
+<div class="flex items-end justify-between gap-2 h-24 px-2">
+<!-- Flower 1 (Small) -->
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="text-primary/40 group-hover:text-primary transition-colors transform group-hover:-translate-y-1 duration-300">
+<span class="material-symbols-outlined text-3xl">local_florist</span>
+</div>
+<div class="h-8 w-1 bg-primary/20 rounded-full group-hover:bg-primary/40 transition-colors"></div>
+<span class="text-xs font-medium text-text-muted">Mon</span>
+</div>
+<!-- Flower 2 (Medium) -->
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="text-primary/60 group-hover:text-primary transition-colors transform group-hover:-translate-y-1 duration-300">
+<span class="material-symbols-outlined text-4xl">local_florist</span>
+</div>
+<div class="h-10 w-1 bg-primary/30 rounded-full group-hover:bg-primary/50 transition-colors"></div>
+<span class="text-xs font-medium text-text-muted">Tue</span>
+</div>
+<!-- Flower 3 (Large - Today) -->
+<div class="flex flex-col items-center gap-2 relative">
+<div class="absolute -top-8 bg-text-main text-white text-[10px] font-bold px-2 py-1 rounded shadow-lg animate-bounce">Today</div>
+<div class="text-primary transform scale-110 drop-shadow-lg">
+<span class="material-symbols-outlined text-5xl">local_florist</span>
+</div>
+<div class="h-12 w-1.5 bg-primary rounded-full"></div>
+<span class="text-xs font-bold text-text-main dark:text-white">Wed</span>
+</div>
+<!-- Flower 4 (Bud - Future) -->
+<div class="flex flex-col items-center gap-2 opacity-50">
+<div class="text-gray-400 dark:text-gray-600">
+<span class="material-symbols-outlined text-3xl">yard</span>
+</div>
+<div class="h-6 w-1 bg-gray-200 dark:bg-gray-700 rounded-full border border-dashed border-gray-400"></div>
+<span class="text-xs font-medium text-text-muted">Thu</span>
+</div>
+<!-- Flower 5 (Bud - Future) -->
+<div class="flex flex-col items-center gap-2 opacity-50">
+<div class="text-gray-400 dark:text-gray-600">
+<span class="material-symbols-outlined text-3xl">yard</span>
+</div>
+<div class="h-5 w-1 bg-gray-200 dark:bg-gray-700 rounded-full border border-dashed border-gray-400"></div>
+<span class="text-xs font-medium text-text-muted">Fri</span>
+</div>
+</div>
+</div>
+<!-- Stats Card -->
+<div class="bg-primary text-white rounded-3xl p-6 shadow-lg shadow-primary/20 flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-4 -top-4 text-white/10 transform rotate-12">
+<span class="material-symbols-outlined text-9xl">favorite</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-white/90 mb-1">甜蜜值</h3>
+<p class="text-xs text-white/70">累计完成挑战获得</p>
+</div>
+<div class="flex items-end gap-2 mt-4 relative z-10">
+<span class="text-5xl font-extrabold tracking-tight">842</span>
+<span class="text-lg font-medium mb-1.5 text-white/80">pts</span>
+</div>
+<div class="mt-4 pt-4 border-t border-white/20 flex justify-between items-center text-sm font-medium">
+<span>下个里程碑</span>
+<span>900 pts</span>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>中文版：手账风双人工作台 (方案2)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&amp;family=Noto+Sans+SC:wght@300;400;500;700&amp;family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f06e42",
+                        "primary-soft": "#fdf1ec",
+                        "background-light": "#fcfcfc",
+                        "background-dark": "#221510",
+                        "accent-blue": "#e0f2fe",
+                        "accent-yellow": "#fef9c3",
+                        "accent-pink": "#fce7f3",
+                        "accent-green": "#dcfce7",
+                    },
+                    fontFamily: {
+                        "display": ["ZCOOL KuaiLe", "cursive", "Plus Jakarta Sans", "sans-serif"],
+                        "body": ["Noto Sans SC", "Plus Jakarta Sans", "sans-serif"],
+                        "handwriting": ["ZCOOL KuaiLe", "cursive"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #f0f0f0 1px, transparent 1px), linear-gradient(to bottom, #f0f0f0 1px, transparent 1px)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>.bg-grid-paper {
+            background-size: 24px 24px;
+            background-image: linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+        }
+        .dark .bg-grid-paper {
+            background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+        }.pin-top {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #94a3b8;box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-body transition-colors duration-200">
+<div class="relative flex h-screen w-full flex-row overflow-hidden">
+<aside class="w-80 h-full flex flex-col border-r border-slate-100 dark:border-slate-800 bg-white dark:bg-[#1a100c] flex-shrink-0 z-20 shadow-sm">
+<div class="p-6 flex flex-col h-full justify-between">
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-4 p-2">
+<div class="relative group cursor-pointer">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-14 ring-4 ring-primary-soft dark:ring-primary/20 transition-all group-hover:scale-105" data-alt="Happy couple smiling together outside" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAfYpmPRK-_kKgQkxSifXyB1_kYoey6Jiqw1T7dewwOVOl3dvtuBk_Juiq2nyi3OgU-Ctcj9HCU2ozJCYAS7oLf0nWBFor01UEA4X7teDi8hE8Xsmi6a6xyr0KMQM0VpVDHprus_ehngg3Z5Par3n5UpW8ga14KMZTrAUsEfsxH_LEYMc0JJIR4-ld11kid4M8CGAbc5XofB-59OW_ZbJJ_7MVToAZRQnv-AAulzYWy0lounP450LSOirxURmdH0lhhj6XFwC3j-xc7");'></div>
+<div class="absolute -bottom-1 -right-1 bg-green-500 border-2 border-white dark:border-gray-800 rounded-full w-4 h-4"></div>
+</div>
+<div class="flex flex-col">
+<h1 class="text-slate-900 dark:text-white text-xl font-bold leading-tight font-display">咱们俩</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">在一起 342 天啦</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-4 px-4 py-3 rounded-2xl bg-primary text-white shadow-md shadow-primary/20 transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-base font-bold font-display">控制面板</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-white/5 text-slate-600 dark:text-slate-300 transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">checklist_rtl</span>
+<span class="text-base font-semibold font-display">任务清单</span>
+<span class="ml-auto bg-primary/10 text-primary text-xs font-bold px-2 py-0.5 rounded-full">3</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-white/5 text-slate-600 dark:text-slate-300 transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">favorite</span>
+<span class="text-base font-semibold font-display">心愿清单</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-white/5 text-slate-600 dark:text-slate-300 transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">calendar_month</span>
+<span class="text-base font-semibold font-display">专属日历</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-white/5 text-slate-600 dark:text-slate-300 transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">settings</span>
+<span class="text-base font-semibold font-display">设置</span>
+</a>
+</nav>
+</div>
+<button class="w-full flex items-center justify-center gap-2 rounded-2xl h-12 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-bold shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5 active:translate-y-0 font-display">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+<span>记录新回忆</span>
+</button>
+</div>
+</aside>
+<main class="flex-1 h-full overflow-y-auto bg-grid-paper relative">
+<header class="sticky top-0 z-10 flex items-center justify-between px-8 py-5 bg-white/80 dark:bg-[#221510]/80 backdrop-blur-md border-b border-slate-100 dark:border-white/5">
+<div class="flex items-center gap-3">
+<span class="flex items-center justify-center w-10 h-10 rounded-full bg-yellow-100 text-yellow-600 dark:bg-yellow-900 dark:text-yellow-300">
+<span class="material-symbols-outlined">wb_sunny</span>
+</span>
+<div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight font-display">早安，宝贝！ 💖</h2>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium">10月24日，星期二</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-white/10 shadow-sm border border-slate-100 dark:border-white/5 hover:bg-slate-50 text-slate-600 dark:text-slate-200 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2.5 w-2 h-2 bg-primary rounded-full border border-white dark:border-[#221510]"></span>
+</button>
+<button class="flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-white/10 shadow-sm border border-slate-100 dark:border-white/5 hover:bg-slate-50 text-slate-600 dark:text-slate-200 transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+</header>
+<div class="p-8 max-w-7xl mx-auto flex flex-col gap-8 pb-20">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2 bg-white dark:bg-white/5 rounded-3xl p-6 shadow-sm border border-slate-100 dark:border-white/5 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10 rotate-12">
+<span class="material-symbols-outlined text-8xl text-primary">sentiment_satisfied</span>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2 font-display">
+<span class="material-symbols-outlined text-primary">face</span>
+                            今日心情
+                        </h3>
+<div class="flex flex-wrap gap-4">
+<button class="flex-1 min-w-[100px] flex flex-col items-center gap-2 p-4 rounded-2xl bg-green-50 dark:bg-green-900/20 border-2 border-transparent hover:border-green-300 transition-all group">
+<span class="text-3xl grayscale group-hover:grayscale-0 transition-all transform group-hover:scale-110">🤩</span>
+<span class="text-sm font-bold text-green-800 dark:text-green-200 font-display">超开心</span>
+</button>
+<button class="flex-1 min-w-[100px] flex flex-col items-center gap-2 p-4 rounded-2xl bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 shadow-sm ring-2 ring-blue-100 dark:ring-blue-900 transition-all transform scale-105">
+<span class="text-3xl transform scale-110">🥰</span>
+<span class="text-sm font-bold text-blue-800 dark:text-blue-200 font-display">被爱包围</span>
+</button>
+<button class="flex-1 min-w-[100px] flex flex-col items-center gap-2 p-4 rounded-2xl bg-yellow-50 dark:bg-yellow-900/20 border-2 border-transparent hover:border-yellow-300 transition-all group">
+<span class="text-3xl grayscale group-hover:grayscale-0 transition-all transform group-hover:scale-110">🙂</span>
+<span class="text-sm font-bold text-yellow-800 dark:text-yellow-200 font-display">还不错</span>
+</button>
+<button class="flex-1 min-w-[100px] flex flex-col items-center gap-2 p-4 rounded-2xl bg-red-50 dark:bg-red-900/20 border-2 border-transparent hover:border-red-300 transition-all group">
+<span class="text-3xl grayscale group-hover:grayscale-0 transition-all transform group-hover:scale-110">😫</span>
+<span class="text-sm font-bold text-red-800 dark:text-red-200 font-display">有点累</span>
+</button>
+</div>
+</div>
+<div class="bg-gradient-to-br from-primary to-orange-400 rounded-3xl p-6 shadow-lg text-white relative overflow-hidden flex flex-col justify-between min-h-[200px]">
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-white/20 rounded-full blur-2xl"></div>
+<div class="absolute bottom-0 left-0 w-24 h-24 bg-black/10 rounded-full blur-xl"></div>
+<div>
+<div class="flex items-center gap-2 mb-2 opacity-90">
+<span class="material-symbols-outlined text-sm">local_fire_department</span>
+<span class="text-xs font-bold uppercase tracking-wider">双人挑战</span>
+</div>
+<h3 class="text-2xl font-bold leading-tight mb-2 font-display">今晚一起做饭吧 🍝</h3>
+<p class="text-white/80 text-sm">亲手做点好吃的！</p>
+</div>
+<div class="mt-4 flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-primary bg-gray-200 bg-cover" data-alt="Avatar 1" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD8N7IQeVKtPmwOkWtMBVenjMEBR0WsnJWASzPX5FRqQAYuwj1-7YHGRJom0_-OBnS0H3Ezjvg4HuxH3B2NyWFZjQrELGcl_6AybAfPD3yxVCbtaLuJwmsTw3PUTkUe7zuwbY9oBesNXVjy0pRAfYSXU200FOv_QA8jOdLuQHyr7faFdSaCHjTu-xWOaMPree26cHecdZZQtzaRCDBzzqdAaq7WgvMuu8jlpTGg5b9ldK8n6cvDV-Kt3YNFbc-weeCTuMpSfpob6JD3')"></div>
+<div class="w-8 h-8 rounded-full border-2 border-primary bg-gray-200 bg-cover" data-alt="Avatar 2" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD6lkRrKJrF3s6RPRjznVa-ZYKtyKNreUbBUPJF-yc1pK_O8TqgSV9hxw5U47yj9FWA4qQBYtg9tD2C6e_gGleuXujv9ecSeSu_o93is60KplnPCNg1IvPgwd1OhxyQHSdiD_UZQlwKby8Yfpv6gh5KkA5XoLqA1Sec4jWJqD_c7rSABzFs8uFsMzBsWErgsGVjea7mWz3rfKt802Rzur2tAoCkcJRHYrVWFi_kTJmceYmaYzhWDcM5GiuPbozjAY1ZJX3GeFNNnR6w')"></div>
+</div>
+<button class="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-3 py-1.5 rounded-lg text-xs font-bold transition-colors font-display">
+                                完成啦！
+                            </button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-white dark:bg-white/5 p-4 rounded-2xl border border-slate-100 dark:border-white/5 flex flex-col items-center justify-center gap-1">
+<span class="text-3xl font-bold text-primary font-display">12</span>
+<span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">连续打卡天数</span>
+</div>
+<div class="bg-white dark:bg-white/5 p-4 rounded-2xl border border-slate-100 dark:border-white/5 flex flex-col items-center justify-center gap-1">
+<span class="text-3xl font-bold text-slate-900 dark:text-white font-display">850</span>
+<span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">恋爱积分</span>
+</div>
+<div class="bg-white dark:bg-white/5 p-4 rounded-2xl border border-slate-100 dark:border-white/5 flex flex-col items-center justify-center gap-1">
+<span class="text-3xl font-bold text-slate-900 dark:text-white font-display">5</span>
+<span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">待办任务</span>
+</div>
+<div class="bg-white dark:bg-white/5 p-4 rounded-2xl border border-slate-100 dark:border-white/5 flex flex-col items-center justify-center gap-1">
+<span class="text-3xl font-bold text-slate-900 dark:text-white font-display">高</span>
+<span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">甜蜜指数</span>
+</div>
+</div>
+<div>
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white font-display">置顶任务</h3>
+<button class="text-primary text-sm font-bold hover:underline font-display">查看全部</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<div class="relative bg-accent-pink dark:bg-pink-900/30 p-6 rounded-xl shadow-md transform rotate-[-1deg] hover:rotate-0 transition-transform duration-300 group">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-red-400 shadow-sm z-20 border border-white/30"></div>
+<div class="flex justify-between items-start mb-4">
+<span class="bg-white/50 dark:bg-black/20 px-2 py-1 rounded-lg text-xs font-bold text-pink-700 dark:text-pink-200">购物清单</span>
+<button class="text-pink-400 hover:text-pink-600 dark:text-pink-300">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<h4 class="text-lg font-bold text-slate-800 dark:text-white mb-3 font-display">买做意面的食材 🛒</h4>
+<ul class="space-y-2 mb-4">
+<li class="flex items-center gap-2 group/item cursor-pointer">
+<div class="w-5 h-5 rounded border-2 border-pink-400 flex items-center justify-center bg-white dark:bg-transparent group-hover/item:bg-pink-100">
+</div>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-200 line-through opacity-50">番茄</span>
+</li>
+<li class="flex items-center gap-2 group/item cursor-pointer">
+<div class="w-5 h-5 rounded border-2 border-pink-400 flex items-center justify-center bg-white dark:bg-transparent group-hover/item:bg-pink-100">
+</div>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-200">罗勒叶</span>
+</li>
+<li class="flex items-center gap-2 group/item cursor-pointer">
+<div class="w-5 h-5 rounded border-2 border-pink-400 flex items-center justify-center bg-white dark:bg-transparent group-hover/item:bg-pink-100">
+</div>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-200">帕尔马干酪</span>
+</li>
+</ul>
+<div class="flex items-center justify-between pt-2 border-t border-pink-200 dark:border-white/10">
+<span class="text-xs font-semibold text-pink-700 dark:text-pink-300">今天下午 6 点前</span>
+<div class="w-6 h-6 rounded-full bg-cover border border-white" data-alt="Assignee Avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC8MLcZWXdahupWAtCWdRuGixT7Q43NqcfzUptd_yjbRNhmxKBXErn4BVIE_gyIgmFVeI9yD_oI_XX4n9uooLUXX4S-vHq-bdIoMiKGz4rCrq7CthFm8ToSjMB686zCR5sWqc64AoWZVEQnMNBllbwVd4YuPfE662aV3wonzt7l7Rs-F8AbQnkBUzPOcS3UizUM44F78cAQRLtTrzF_Ye7fQqXggBuHZ9qPVxf2M2UYze4ge-Lw7Wn-Zsc_N30Uv8NER4riBz-Cn1Ol')"></div>
+</div>
+</div>
+<div class="relative bg-accent-yellow dark:bg-yellow-900/30 p-6 rounded-xl shadow-md transform rotate-[1deg] hover:rotate-0 transition-transform duration-300">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-8 bg-white/40 rotate-2 backdrop-blur-sm z-20"></div>
+<div class="flex justify-between items-start mb-4">
+<span class="bg-white/50 dark:bg-black/20 px-2 py-1 rounded-lg text-xs font-bold text-yellow-700 dark:text-yellow-200">约会之夜</span>
+<button class="text-yellow-600 hover:text-yellow-800 dark:text-yellow-300">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<h4 class="text-lg font-bold text-slate-800 dark:text-white mb-3 font-display">预订电影票 🍿</h4>
+<p class="text-sm text-slate-600 dark:text-slate-300 mb-4 font-medium">记得我们想看那部新喜剧！查一下晚上8点的场次。</p>
+<div class="flex items-center justify-between pt-2 border-t border-yellow-200 dark:border-white/10">
+<span class="text-xs font-semibold text-yellow-700 dark:text-yellow-300">截止明天</span>
+<div class="w-6 h-6 rounded-full bg-cover border border-white" data-alt="Assignee Avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBzZsh3toDMLETX5emhjLOG4faSPb-SlfOkpDzG0KITz0lPsxgCC0DIx235NihdfDlxNoqnsT2EmEsqNcXpdlV9DmobMWIszu_85YbQJ2TCJWumqRBaNqXSe53wrBslOoVmzWhwXcRerQqZ28Y7eKFyvbpZopiaAJgDy8Z-zg4kYb7h6PsF9Ti_2SNHqE2_ebXQtrt1ihCXraVMuJa5ZGcPgDt9CLAXmvnaSovPd2CqcLtcQjLqxCTeDy82zHInQ1-N5To7DCvuRxJY')"></div>
+</div>
+</div>
+<div class="relative bg-accent-blue dark:bg-blue-900/30 p-6 rounded-xl shadow-md transform rotate-[-2deg] hover:rotate-0 transition-transform duration-300">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-blue-400 shadow-sm z-20 border border-white/30"></div>
+<div class="flex justify-between items-start mb-4">
+<span class="bg-white/50 dark:bg-black/20 px-2 py-1 rounded-lg text-xs font-bold text-blue-700 dark:text-blue-200">家务琐事</span>
+<button class="text-blue-500 hover:text-blue-700 dark:text-blue-300">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<h4 class="text-lg font-bold text-slate-800 dark:text-white mb-3 font-display">给植物浇水 🌿</h4>
+<div class="flex items-center gap-3 mb-4 p-3 bg-white/40 dark:bg-black/10 rounded-lg">
+<button class="w-8 h-8 rounded-full border-2 border-blue-400 bg-white dark:bg-transparent flex items-center justify-center text-primary transition-all hover:bg-blue-50">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+<span class="text-sm font-bold text-blue-800 dark:text-blue-100 font-display">点这里完成！</span>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-blue-200 dark:border-white/10">
+<span class="text-xs font-semibold text-blue-700 dark:text-blue-300">周期：每周</span>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-cover border border-white" data-alt="Assignee Avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB98EW1o354d1abJ58RMcNV9isJN8htX-c_DVq9aPHOc6ypfNTdhj3ZbFrRQZX2N4iiQNqpGpppeWYAB3sGlEEKOFl_3l6RaJvCxOEF-YwfHwg8y7X2CNT56Dy_WLPszvUdv1l5kCMzfSm8Ymx-6Yi_D4hThHzlwgDBg0z-o1JD2MzXY91iiJyWjtUKkck1b7d1Z7ideAsqExGYMKJ2gZygCO6ZWwCljHZN7xH68rsE9GHBS17z2aGxUWLh1eTsNx1CsVYfxIkW9UA0')"></div>
+<div class="w-6 h-6 rounded-full bg-cover border border-white" data-alt="Assignee Avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAlf52HN0RCw7_DQapoqpZsu9pC4WUtgtqAoh5bnsVoQePMS4N_wqsNtL7JcQ7UnCjSpwf-UxfY_oY6Bq1Y10ovg5ypPIomF_wiedZNH5EWDYljhXORPw3kwBlPSTCDu8cyVg30YvrNNZ3JUjJYlkNaWfpBX6-9WadCj1n_ctzSCK71bVgguRBCCSmAMNl7vowtM8aeW5KyjmYGr1fVacndvzvgXQI5sj2phO4Gx_7NOpoHgGL_Tg5ihRGnSnpNjiUDCARkIu3f_D4x')"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-4">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white font-display">最近的照片 📸</h3>
+</div>
+<div class="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+<div class="flex-shrink-0 w-48 h-64 bg-white dark:bg-white/5 p-2 pb-8 rounded-lg shadow-sm border border-slate-200 dark:border-white/10 rotate-2 hover:rotate-0 transition-transform duration-300 cursor-pointer">
+<div class="w-full h-48 bg-gray-200 rounded overflow-hidden mb-2">
+<div class="w-full h-full bg-cover bg-center hover:scale-110 transition-transform duration-500" data-alt="Couple holding hands on a bridge" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBhqAyxKEPd6uFsurLu4vlEtvSr7YtTnKuuCobP3-Bum8iUJT8KQqLk12K3l3zK6stxDj2ivQpi7Lbnjr2z2QEHpNwTnEHdxiY8iDeLt8LZcIA0VSAz-4newy9UfBiOU_dwUytP9O078v2kfYH4fl7xkWLA1RuyCzLwUpLwCQD4oAUhnuCRFWCnzzFoeyzVCIpHj-1Esiv9BR-96wJ__qLHpHgjVQt9kUo_1qMxiHq1_4bFVq8XG4G5TqqPxi-KJAuc2lZfWJ3qKNwV')"></div>
+</div>
+<p class="text-center font-handwriting text-slate-600 dark:text-slate-300 font-bold text-base">周日散步</p>
+</div>
+<div class="flex-shrink-0 w-48 h-64 bg-white dark:bg-white/5 p-2 pb-8 rounded-lg shadow-sm border border-slate-200 dark:border-white/10 -rotate-1 hover:rotate-0 transition-transform duration-300 cursor-pointer">
+<div class="w-full h-48 bg-gray-200 rounded overflow-hidden mb-2">
+<div class="w-full h-full bg-cover bg-center hover:scale-110 transition-transform duration-500" data-alt="Two people laughing in a cafe" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD-fKph3w-uf1weLyiIP6Uc3yTPNeox6UFKdN0oxGGPpCz0Qf5xhPQ95VML-K5u5e6MbN5-QpoAfdOZX5FNI4-TB35RBQMZGPx5ilMmtXPPcGFz0Hz93JLBVcJFnmD4qhi0--zEVkda_qZrnyogPD6UCw5npUFB6YwCMXWX8yebwOOeRHFwqKYQOvIvY8hXcgHfmeyDpr64iQxed67KQLCD_0_JjbjteWtcJkEy0gOF26ap2h_Wu2mzc8nb8kGGto2291S-fgmT1Iti')"></div>
+</div>
+<p class="text-center font-handwriting text-slate-600 dark:text-slate-300 font-bold text-base">咖啡时光</p>
+</div>
+<div class="flex-shrink-0 w-48 h-64 flex items-center justify-center bg-slate-100 dark:bg-white/5 border-2 border-dashed border-slate-300 dark:border-white/20 rounded-lg cursor-pointer hover:bg-slate-200 dark:hover:bg-white/10 transition-colors">
+<div class="flex flex-col items-center gap-2 text-slate-400">
+<span class="material-symbols-outlined text-3xl">add_a_photo</span>
+<span class="text-xs font-bold font-display">添加照片</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

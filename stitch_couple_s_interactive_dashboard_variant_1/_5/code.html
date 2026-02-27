@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TWODO：连结成功页面</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f0427c",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221016",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>.soft-gradient {
+            background: radial-gradient(circle at 20% 30%, rgba(240, 66, 124, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(240, 66, 124, 0.12) 0%, transparent 40%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col relative overflow-hidden soft-gradient">
+<div aria-hidden="true" class="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
+<div class="absolute top-10 left-10 w-4 h-4 bg-yellow-400 rounded-full opacity-60"></div>
+<div class="absolute top-20 right-20 w-3 h-3 bg-primary rounded-full opacity-40"></div>
+<div class="absolute bottom-32 left-1/4 w-6 h-6 bg-blue-300 rounded-md rotate-12 opacity-50"></div>
+<div class="absolute top-1/3 right-10 w-5 h-5 bg-purple-300 rounded-full opacity-40"></div>
+<div class="absolute bottom-10 right-1/4 w-4 h-4 bg-primary/40 rounded-full opacity-50"></div>
+<div class="absolute top-1/4 left-1/3 w-3 h-3 bg-green-300 rounded-sm rotate-45 opacity-50"></div>
+</div>
+<div class="layout-container flex h-full grow flex-col z-10 justify-center items-center">
+<div class="px-4 md:px-40 flex flex-1 justify-center py-5 items-center w-full">
+<div class="layout-content-container flex flex-col w-full max-w-[640px] flex-1 items-center">
+<div class="flex flex-col px-6 py-12 md:p-12 bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl rounded-xl shadow-sm border border-white/50 dark:border-slate-700 w-full items-center gap-8 relative overflow-hidden">
+<div class="absolute top-6 left-0 w-full flex justify-center opacity-10">
+<h2 class="text-6xl font-extrabold tracking-widest text-primary select-none">TWODO</h2>
+</div>
+<div class="flex items-center justify-center relative w-full h-48 md:h-64 mt-4">
+<div class="absolute h-1 w-32 bg-slate-200 dark:bg-slate-600 rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-slate-800 p-3 rounded-2xl shadow-md z-10 flex flex-col items-center justify-center border-2 border-primary/20">
+<span class="material-symbols-outlined text-primary text-3xl">favorite</span>
+<span class="text-[10px] font-bold text-primary tracking-wider mt-1">TWODO</span>
+</div>
+<div class="absolute left-1/2 -translate-x-[110px] md:-translate-x-[140px] top-1/2 -translate-y-1/2 flex flex-col items-center gap-3">
+<div class="w-20 h-20 md:w-24 md:h-24 rounded-full border-4 border-white dark:border-slate-700 shadow-lg bg-cover bg-center transition-transform hover:scale-105 duration-300" data-alt="Portrait of a smiling woman" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAvNt_mQffMtsFvSdzz52ckEe8_rilOtVsfVyxZWYb0DI2RojwJgKBA5ee4rwmTDSdp_CSz7nlyEPG0B2EJ8jE5C5HJmnQ0ZQ8R2Vvez2DfZmk3GzWKdnJbAOD7d7yRXO6XoA97CyXmvTOdOEiz2P85xLxNc7Vo72XzZBdW5pofxXq3H52ABQ__nvZqRy9mUFj2xySyu4_KZ-EFjc5u2Zn91Fu6Vzq39W4mjy2-nxraykTwZ9tHs_kBcKl-3Pl183VtNc85dM9jxnmz');">
+</div>
+</div>
+<div class="absolute left-1/2 translate-x-[30px] md:translate-x-[44px] top-1/2 -translate-y-1/2 flex flex-col items-center gap-3">
+<div class="w-20 h-20 md:w-24 md:h-24 rounded-full border-4 border-white dark:border-slate-700 shadow-lg bg-cover bg-center transition-transform hover:scale-105 duration-300" data-alt="Portrait of a smiling man" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAUeDIEhqUN8Sl476R-Wr6Xnru99CeeS4Kw0XlRGv7ZcbXS-SE13DGc3jHgWF_jzi6vrSKdoTXtlFvcHGWUnmK77NGQ1Ck1B2Nwwg9sc0A4j_MkD0-vHFbrfJq-o1wdkD_BvWQkbyrAB7arqpuT50TaxowqYUaFvnk4Oa92c16QBUtnjC3H8nBPe__BJyPjdV3sJExwqeG2zTRn3YhVhY3zUzIUK4xDgjYOFgmvqbKUR58u7ATHvxfRpRsgb3Qb0O37YQpa8CSIg5Q3');">
+</div>
+</div>
+<span class="material-symbols-outlined absolute text-yellow-400 text-xl top-1/4 left-1/3 animate-pulse">spark</span>
+<span class="material-symbols-outlined absolute text-primary/60 text-lg bottom-1/4 right-1/3 animate-pulse delay-75">star</span>
+</div>
+<div class="flex max-w-[480px] flex-col items-center gap-4 text-center">
+<h1 class="text-slate-900 dark:text-white text-2xl md:text-3xl font-bold leading-tight tracking-[-0.015em]">
+                        连结成功！欢迎来到 TWODO 小屋
+                    </h1>
+<p class="text-slate-500 dark:text-slate-400 text-base font-normal leading-relaxed max-w-[400px]">
+                        你们已经成功绑定，准备好开始共同记录生活了吗？<br/>
+                        这是属于你们两个人的私密空间。
+                    </p>
+</div>
+<div class="flex flex-col gap-4 w-full max-w-[320px] items-center pt-4">
+<button class="group relative flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 md:h-14 px-8 bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/20 transition-all active:scale-95">
+<span class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+<span class="text-base font-bold leading-normal tracking-wide flex items-center gap-2">
+                            进入 TWODO 小屋
+                            <span class="material-symbols-outlined text-xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</span>
+</button>
+<button class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors">
+                        稍后再设置
+                    </button>
+</div>
+</div>
+<p class="mt-8 text-xs text-slate-400 dark:text-slate-600 text-center">
+                TWODO · 您的数据已加密并安全存储
+            </p>
+</div>
+</div>
+</div>
+
+</body></html>

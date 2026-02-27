@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>甜蜜时光 - 照片墙</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f06e42",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221510",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2d1f1a",
+                        "text-main": "#181311",
+                        "text-secondary": "#896b61",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "Noto Sans SC", "sans-serif"],
+                        "handwriting": ["Noto Sans SC", "cursive"] 
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px"},
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(240, 110, 66, 0.1)',
+                        'card': '0 2px 12px -2px rgba(0, 0, 0, 0.05)',
+                        'polaroid': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .masonry-grid {
+            column-count: 1;
+            column-gap: 1.5rem;
+        }
+        @media (min-width: 640px) {
+            .masonry-grid {
+                column-count: 2;
+            }
+        }
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                column-count: 3;
+            }
+        }
+        @media (min-width: 1280px) {
+            .masonry-grid {
+                column-count: 4;
+            }
+        }
+        .break-inside-avoid {
+            break-inside: avoid;
+        }
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d1d5db; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-main antialiased min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 w-full bg-surface-light/90 dark:bg-surface-dark/90 backdrop-blur-md border-b border-secondary/10 px-6 py-4 transition-colors duration-300">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<!-- Logo Section -->
+<div class="flex items-center gap-3">
+<div class="size-8 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">favorite</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-text-main dark:text-white">甜蜜时光</h1>
+</div>
+<!-- Navigation Links (Desktop) -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-text-secondary hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary" href="#">待办事项</a>
+<a class="text-sm font-medium text-text-secondary hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary" href="#">购物清单</a>
+<a class="text-sm font-medium text-text-secondary hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary" href="#">纪念日</a>
+<a class="text-sm font-bold text-primary" href="#">相册</a> <!-- Active State -->
+<a class="text-sm font-medium text-text-secondary hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary" href="#">设置</a>
+</nav>
+<!-- User Actions -->
+<div class="flex items-center gap-4">
+<button class="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+<span class="text-sm font-bold">登出</span>
+</button>
+<div class="size-10 rounded-full bg-cover bg-center border-2 border-white shadow-sm cursor-pointer hover:scale-105 transition-transform" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDZGfEadUxSNQWjqNx-nwww3iRDCgc9Q-Er6MzUzLdJn-a3jdFzTgYdW1zShcOMwN8r8WKBsrRMdBhMSQNQv61HqCYrq1goX8tT5IXg7UGWnCXrr0MgAyIaboZKoi06IMtcRgjsXNZEDmTTQ-3qITmcd7u3ATldYPMgwucfx_DLWczjUdexnx1giIs1FCWnWni0lLcDRgv4o2Zph6gXt32xyEQqwqXfvttg4yzTBy6xvHeSkQMt2wYB5PdcxuCgV43YobKCfKFzNOIu");'></div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative">
+<!-- Background Decorations (Floating Hearts/Sparkles) -->
+<div class="absolute top-10 left-10 text-primary/10 animate-pulse pointer-events-none select-none z-0">
+<span class="material-symbols-outlined text-6xl">favorite</span>
+</div>
+<div class="absolute top-40 right-20 text-primary/10 pointer-events-none select-none z-0">
+<span class="material-symbols-outlined text-4xl">star</span>
+</div>
+<div class="absolute bottom-20 left-1/4 text-primary/5 pointer-events-none select-none z-0">
+<span class="material-symbols-outlined text-8xl">volunteer_activism</span>
+</div>
+<!-- Header Section -->
+<div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
+<div class="space-y-2">
+<h2 class="text-4xl md:text-5xl font-black text-text-main dark:text-white tracking-tight">我们的回忆墙</h2>
+<p class="text-text-secondary dark:text-gray-400 text-lg font-medium">收藏每一个心动瞬间 ✨</p>
+</div>
+<button class="group flex items-center gap-3 bg-primary text-white px-6 py-3 rounded-xl shadow-soft hover:shadow-lg hover:bg-primary/90 transition-all transform hover:-translate-y-0.5">
+<span class="material-symbols-outlined group-hover:rotate-12 transition-transform">add_a_photo</span>
+<span class="font-bold text-base">记录新瞬间</span>
+</button>
+</div>
+<!-- Filters Section -->
+<div class="relative z-10 flex flex-wrap gap-3 mb-10 pb-4 border-b border-gray-100 dark:border-white/10">
+<button class="px-5 py-2 rounded-full bg-primary text-white text-sm font-bold shadow-md transition-transform hover:scale-105">
+                全部
+            </button>
+<button class="px-5 py-2 rounded-full bg-white dark:bg-surface-dark text-text-secondary dark:text-gray-300 border border-gray-100 dark:border-white/10 text-sm font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                2024年
+            </button>
+<button class="px-5 py-2 rounded-full bg-white dark:bg-surface-dark text-text-secondary dark:text-gray-300 border border-gray-100 dark:border-white/10 text-sm font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                2023年
+            </button>
+<button class="px-5 py-2 rounded-full bg-white dark:bg-surface-dark text-text-secondary dark:text-gray-300 border border-gray-100 dark:border-white/10 text-sm font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-base">flight</span> 旅行
+            </button>
+<button class="px-5 py-2 rounded-full bg-white dark:bg-surface-dark text-text-secondary dark:text-gray-300 border border-gray-100 dark:border-white/10 text-sm font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-base">restaurant</span> 美食
+            </button>
+<button class="px-5 py-2 rounded-full bg-white dark:bg-surface-dark text-text-secondary dark:text-gray-300 border border-gray-100 dark:border-white/10 text-sm font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-base">pets</span> 萌宠
+            </button>
+</div>
+<!-- Masonry Grid -->
+<div class="masonry-grid relative z-10 pb-20">
+<!-- Photo Card 1 (Portrait) -->
+<div class="break-inside-avoid mb-6 group cursor-pointer">
+<div class="bg-white dark:bg-surface-dark p-3 pb-5 rounded-sm shadow-polaroid hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:rotate-1">
+<div class="aspect-[3/4] w-full overflow-hidden rounded-sm bg-gray-100 relative mb-4">
+<img alt="Couple holding hands at sunset" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Couple holding hands silhouette sunset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4bh0tnXlP6IEhkm8IGi13pq-fMUuwufhvhp5Png5GSne2_yEFqm0miuMEjtqR0LFeeM1pHBjuGsxzu9S8Q_O-ilwNzqM12VT8DPSsvUwT9u_w8444AfQ83nS4xv0NbCyiYXILN4KbJVX_vrxSGIeE7qpmVDwW_uQHHcUApw2SGo33gaAwjHoK3mTD2O-sjIRkqp4DrnvWEHrHH66cAjmZ7qRwCdfQpaW7PauGK-fEAJNzWuKwmbwGaEqqccwiw0iIqnTSireTYTsW"/>
+<div class="absolute top-2 right-2 bg-black/20 backdrop-blur-sm rounded-full p-1 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</div>
+</div>
+<div class="px-2 text-center">
+<p class="font-handwriting text-lg text-text-main dark:text-gray-200 font-medium">第一次约会 ❤️</p>
+<p class="text-xs text-text-secondary dark:text-gray-500 mt-1 font-mono">2023.05.20</p>
+</div>
+</div>
+</div>
+<!-- Photo Card 2 (Landscape) -->
+<div class="break-inside-avoid mb-6 group cursor-pointer">
+<div class="bg-white dark:bg-surface-dark p-3 pb-5 rounded-sm shadow-polaroid hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:-rotate-1">
+<div class="aspect-[4/3] w-full overflow-hidden rounded-sm bg-gray-100 relative mb-4">
+<img alt="Couple walking in a park" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Couple walking in autumn park" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnpRqe7vQzVqYoHakNR60QtmLr0__HRZLNXmgF8tr_zGXG1iWkBtChsDNq-ibhUsOCLj4ffc0xaySjiw-RcP0aHSCimH6QX9DjNoXAzU5GjLkKz5SIKZtY45Ohc79Lfcq_UzfMPBX0MVS4jNSsm-yCoBxgSrPFW3NoBQtGUEFCOWvxOxy8lGgifw0Y2QnEbNWCWenPCzjc_K1c1pqdkhBds8HWEuH6aKZD5VmJOuKH2GewsQQYCEn3n-LfKOGQDJX6InBlqNPAkqUV"/>
+</div>
+<div class="px-2 text-center">
+<p class="font-handwriting text-lg text-text-main dark:text-gray-200 font-medium">周末公园野餐 🥪</p>
+<p class="text-xs text-text-secondary dark:text-gray-500 mt-1 font-mono">2023.10.01</p>
+</div>
+</div>
+</div>
+<!-- Photo Card 3 (Square) -->
+<div class="break-inside-avoid mb-6 group cursor-pointer">
+<div class="bg-white dark:bg-surface-dark p-3 pb-5 rounded-sm shadow-polaroid hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:rotate-2">
+<div class="aspect-square w-full overflow-hidden rounded-sm bg-gray-100 relative mb-4">
+<img alt="Two cute cats sleeping" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Two cats cuddling together" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAatZQWcieDqTrDMHoZjeE-zTdZeLK0nNIcB0SerBU2LLAo2zZnmDJASpH7EwdHtEkxFImhXtX2D4Bv3SyuL05c0ILkUKqVjP7w75jbLZ2FDwzWCD_MMtLrU5bZoEPxjW1ez3HcCIvyGAhxb9u8hQwIGcm_cDUigyAGu1zHuzmPp1mGMX3cjFeoN1KQUW9d2KZ3ZuuMA9EhY8HyPDwk_kUQA1CezfXbUAbEs9ljNr92RAG1vmZTOWn-xBGgiW_AkcG0pREdoOq0iQgP"/>
+</div>
+<div class="px-2 text-center">
+<p class="font-handwriting text-lg text-text-main dark:text-gray-200 font-medium">一起养的小猫 🐱</p>
+<p class="text-xs text-text-secondary dark:text-gray-500 mt-1 font-mono">2023.09.05</p>
+</div>
+</div>
+</div>
+<!-- Photo Card 4 (Portrait) -->
+<div class="break-inside-avoid mb-6 group cursor-pointer">
+<div class="bg-white dark:bg-surface-dark p-3 pb-5 rounded-sm shadow-polaroid hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+<div class="aspect-[3/4] w-full overflow-hidden rounded-sm bg-gray-100 relative mb-4">
+<img alt="City street view at night" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Blurred city lights at night" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaFvZ6qejZop-PzA1KfXB10oH9flU7Pqx-3IZbKyqSeCoKYfpKHC9XSvCAWh79bLFQvvMIYBTSho0jrhXTtENs27m0FNzJhrlkke1dyuMOg5mq6JsQSupD78NBe1_zrQFsATalj-R9JZoaU4K8GFR1LnEFhz_2fj4BS6lF3v5eN99yK4GvRLLIw52WFrCg_QmY8eV0s5BcEBvDqjksn2OqhIbL0aZe-h32Ushqg4euDuL1dvFYrs8tvGOYEcx6UbMUGqhppLJdUk27"/>
+</div>
+<div class="px-2 text-center">
+<p class="font-handwriting text-lg text-text-main dark:text-gray-200 font-medium">看电影 🎬</p>
+<p class="text-xs text-text-secondary dark:text-gray-500 mt-1 font-mono">2023.11.11</p>
+</div>
+</div>
+</div>
+<!-- Photo Card 5 (Portrait) -->
+<div class="break-inside-avoid mb-6 group cursor-pointer">
+<div class="bg-white dark:bg-surface-dark p-3 pb-5 rounded-sm shadow-polaroid hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:-rotate-2">
+<div class="aspect-[4/5] w-full overflow-hidden rounded-sm bg-gray-100 relative mb-4">
+<img alt="Wedding rings" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Wedding rings on table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqB05xoVHqfj1JP3wPiflfVXJI6kD3aAh1rBJc5HQSClsTMTI0oBKbP9SyE-eSLTNqQeyBswBSX80DEdPmYMztjCc0nqsdFrkfaDb3zhY0oF5S1uMoIazrWBKHOSGsmmGcGY3c_ndJOTP2-sZOTD9VBZNMt-XtvMJyRFHgOtu1px9MuZtiIOqeGAjKj507kPVAfnTsKuwv6cgmPVyen6V927ja5EVGxSBMUsrUalclkcMrxdl5ZKXduMCiz8lTNCAVcCLkzYhYu0oS"/>
+<div class="absolute top-2 left-2 bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                            Special
+                        </div>
+</div>
+<div class="px-2 text-center">
+<p class="font-handwriting text-lg text-text-main dark:text-gray-200 font-medium">周年纪念日 🎂</p>
+<p class="text-xs text-text-secondary dark:text-gray-500 mt-1 font-mono">2023.08.12</p>
+</div>
+</div>
+</div>
+<!-- Photo Card 6 (Landscape) -->
+<div class="break-inside-avoid mb-6 group cursor-pointer">
+<div class="bg-white dark:bg-surface-dark p-3 pb-5 rounded-sm shadow-polaroid hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:rotate-1">
+<div class="aspect-video w-full overflow-hidden rounded-sm bg-gray-100 relative mb-4">
+<img alt="View of mountains and lake" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Swiss alps landscape lake" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkMORaT6Dhr-2HgbdabE_S3UWaEt-0R2Lty8KRotWUpbB-oZ-FqRt9FkrZbkLcOqVi4uXLac_DxoxxJF196mWtnSpGw4aGa1emDkRzK_n37yf7yvAwopbQQVUFFERrqT0pVHR7Np4s4-ZIRIz4A8xnseCDFGFC5l0ulFiSmUAn4gbicmo3_ql_-0LBGEpwySAzzNHbepK56twWwQ7kF6w-MRcDeu3VYtMqQoetY1KINnwUWEr29-gs3Qo5IVBEeOGbwZ4qlHq7FG8P"/>
+</div>
+<div class="px-2 text-center">
+<p class="font-handwriting text-lg text-text-main dark:text-gray-200 font-medium">瑞士之旅 🏔️</p>
+<p class="text-xs text-text-secondary dark:text-gray-500 mt-1 font-mono">2023.12.20</p>
+</div>
+</div>
+</div>
+<!-- Photo Card 7 (Square) -->
+<div class="break-inside-avoid mb-6 group cursor-pointer">
+<div class="bg-white dark:bg-surface-dark p-3 pb-5 rounded-sm shadow-polaroid hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+<div class="aspect-square w-full overflow-hidden rounded-sm bg-gray-100 relative mb-4">
+<img alt="Healthy salad bowl" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Fresh vegetable salad bowl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_kt2CNmTAAWytbg6wYaCk1w-Xl1qrdf9gXGFEcMjUDqXgrYX6ggx5vR03MAEmHE5pcb9M0-pEojHKX9ZjPZac8oQ15kvORu-fsiN0wxaxVnTyM9w8lvKeuL94pLO8oeXCLSdQ5gbDblg1GdMxQI7Kr63aUaRsamaHm2plZ15lkEuzCwpbe1Kaob_Juompo44cqUPvbosb6iMS4q-tPrHQ-BGsYgo8e9EY29QNtMKU5DPlvSiFsRWXUK841viNnpN-EkVqQVrL6Rh2"/>
+</div>
+<div class="px-2 text-center">
+<p class="font-handwriting text-lg text-text-main dark:text-gray-200 font-medium">爱心便当 🍱</p>
+<p class="text-xs text-text-secondary dark:text-gray-500 mt-1 font-mono">2023.07.01</p>
+</div>
+</div>
+</div>
+<!-- Photo Card 8 (Portrait) -->
+<div class="break-inside-avoid mb-6 group cursor-pointer">
+<div class="bg-white dark:bg-surface-dark p-3 pb-5 rounded-sm shadow-polaroid hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:-rotate-1">
+<div class="aspect-[3/4] w-full overflow-hidden rounded-sm bg-gray-100 relative mb-4">
+<img alt="Fireworks in night sky" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Colorful fireworks night sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoyGeUQTrTXZH8sU_vTGPhANbHwtzYRiyuzg_Gmzvv3j4eJiqTRENKdWzQqniEeG05f4Zu1TZTb55qe5alfqKZSlbCQU3pFjRxUtajCyWCGRv2TpVNN1jqStKu8EOfX8mBIhU6TVPDe_RZ0lMfi8muCEw7N3wgYxgV1c747a8NNo0zKYcjTud9zKDF9GZEpnv2FQKrrD-XKusqLeT5t_jagSkv715b78pUhc2vkAWTh7bU6Qy_XkHLtdRZrjDGFuwqaEyZ4dkJVpr1"/>
+</div>
+<div class="px-2 text-center">
+<p class="font-handwriting text-lg text-text-main dark:text-gray-200 font-medium">新年快乐 🎆</p>
+<p class="text-xs text-text-secondary dark:text-gray-500 mt-1 font-mono">2024.01.01</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Simple Footer -->
+<footer class="w-full py-6 text-center text-text-secondary dark:text-gray-500 text-sm border-t border-gray-100 dark:border-white/5 mt-auto">
+<p>© 2024 甜蜜时光 Sweet Moments. Made with ❤️ for us.</p>
+</footer>
+</body></html>

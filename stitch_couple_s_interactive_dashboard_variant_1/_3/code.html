@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CoupleDo - Personal Profile &amp; Shared Stats</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f0427c",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221016",
+                        "neutral-soft": "#fdfbfc", // Very light pinkish white for cards
+                        "neutral-text": "#181113", // Dark text
+                        "neutral-muted": "#89616f", // Muted text
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e5e7eb;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d1d5db;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased min-h-screen flex flex-col overflow-x-hidden text-neutral-text dark:text-slate-100">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Navbar -->
+<div class="w-full flex justify-center sticky top-0 z-50 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-primary/10">
+<div class="layout-content-container flex flex-col max-w-[1200px] flex-1 w-full">
+<header class="flex items-center justify-between whitespace-nowrap px-6 py-4 lg:px-10">
+<div class="flex items-center gap-3 text-neutral-text dark:text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-[32px]">favorite</span>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">CoupleDo</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-center gap-8">
+<a class="text-neutral-muted hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Tasks</a>
+<a class="text-neutral-muted hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Calendar</a>
+<a class="text-neutral-muted hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Memories</a>
+<a class="text-primary text-sm font-bold leading-normal" href="#">Profile</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden sm:flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-5 bg-primary/10 hover:bg-primary/20 text-primary text-sm font-bold transition-colors">
+<span class="truncate">Log Out</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-primary/20" data-alt="User profile picture showing a smiling woman" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuABVROtgi_os1rLujdnbg-YOBCOL1C_GtX2-jE7EgQs7nQoKIL52VNTugcfwmbx_Wrv8py-9xUIFHJi2b9wi4kh20s5cC8y0huVPEVn3nd-y1dNxMQ6HcuFMXI5uTNWauKAzAIpmJJVYERBvhR_rKLuv3rE0OIQPfY36s-6Nt0r6Hf8ahN_5VwVVh22Lc0Sj7Jfse0eZIfYEOXPQpUAgoZz7j80JRkzUbMNrMPQ3ULdVIp4CQV7wTN_ZHUpCS-Sv2-3eMK0yOEXYJNh");'></div>
+<button class="md:hidden text-neutral-text">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+</div>
+</div>
+<!-- Main Content -->
+<div class="flex flex-1 justify-center py-8 px-4 sm:px-6 lg:px-8">
+<div class="layout-content-container flex flex-col max-w-[1000px] flex-1 gap-8">
+<!-- Header Section: Avatars & Days Counter -->
+<section class="flex flex-col items-center justify-center py-6 animate-fade-in-down">
+<div class="relative flex items-center justify-center mb-6">
+<!-- Left Avatar -->
+<div class="relative z-10 -mr-4 transform hover:-translate-x-1 transition-transform duration-300">
+<div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-background-light dark:border-background-dark bg-cover bg-center shadow-lg" data-alt="Female partner profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDsqtWW6__jkySbv6jCp7Kv9korA2IChD75vxzq6g_7IKuqVoSuyrpynvvGUjj0CysafsahmuRe91BMI2aBZD1UGkvLilSFl2kKYvCpboSLWfkLaLScscg5trEuD5ocnEg2CKR-ohosWF7UmumnfZr8b5VzEG3XEVCxrpcypQNe85xROu00CeUFiPW5UrGtwWvI2qWgq0B_XwCdc7svm_ugfeX1UCC_2dQ21usLSrJCPVCtLt1rJuIa9E_jdfFNtANiXYdQyXIUO2gv");'></div>
+</div>
+<!-- Heart Icon in Middle -->
+<div class="z-20 bg-background-light dark:bg-background-dark p-1 rounded-full">
+<div class="bg-primary text-white p-2 rounded-full shadow-md flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</div>
+</div>
+<!-- Right Avatar -->
+<div class="relative z-10 -ml-4 transform hover:translate-x-1 transition-transform duration-300">
+<div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-background-light dark:border-background-dark bg-cover bg-center shadow-lg" data-alt="Male partner profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAGtRNu1nhFezbc4no9QGLRUUKnB7TSn2f8RCnecyj0QWms2O_TOj0KJGNzEPlg2aW9j9uo8ddtivOzz8_-OV4lz9rqZzdyacOAwywK-Wgbxkk5izlkSGvmUaYu4HQHW-3W0Xrm0WbuVqTgKOxPKnG9f0kAuaPDeCLAuV0rTX1BFz7VBLvGd8VBuJMURAmWd5qyxkZQO7T2pwGj4aqLUkClNoh7L6uxMaCDs4JCCWg6k-WwWIGZgkLifGvuEjTDFCYmJAO1qDGjKPqR");'></div>
+</div>
+</div>
+<div class="text-center">
+<h1 class="text-neutral-text dark:text-white text-3xl sm:text-4xl font-bold mb-2">365 Days Together</h1>
+<p class="text-neutral-muted dark:text-slate-400 text-sm sm:text-base font-medium">Started loving since January 1st, 2023</p>
+</div>
+</section>
+<!-- Stats Grid -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Task Completion Donut Chart -->
+<div class="col-span-1 md:col-span-5 bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-primary/5 flex flex-col items-center justify-between min-h-[300px]">
+<div class="w-full flex justify-between items-center mb-4">
+<h3 class="font-bold text-lg text-neutral-text dark:text-white">Task Completion</h3>
+<span class="bg-primary/10 text-primary text-xs font-bold px-2 py-1 rounded-lg">This Month</span>
+</div>
+<div class="relative size-48 flex items-center justify-center">
+<!-- SVG Donut Chart -->
+<svg class="size-full transform -rotate-90" viewbox="0 0 100 100">
+<!-- Background circle -->
+<circle class="dark:stroke-slate-700" cx="50" cy="50" fill="transparent" r="40" stroke="#f4f0f2" stroke-width="12"></circle>
+<!-- Progress circle (85%) -->
+<circle cx="50" cy="50" fill="transparent" r="40" stroke="#f0427c" stroke-dasharray="251.2" stroke-dashoffset="37.68" stroke-linecap="round" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-4xl font-bold text-neutral-text dark:text-white">85%</span>
+<span class="text-xs text-neutral-muted font-medium mt-1">Completion</span>
+</div>
+</div>
+<div class="flex gap-8 w-full justify-center mt-6">
+<div class="text-center">
+<p class="text-2xl font-bold text-neutral-text dark:text-white">102</p>
+<p class="text-xs text-neutral-muted">Done</p>
+</div>
+<div class="w-px bg-gray-200 dark:bg-slate-700 h-10"></div>
+<div class="text-center">
+<p class="text-2xl font-bold text-neutral-text dark:text-white">18</p>
+<p class="text-xs text-neutral-muted">Pending</p>
+</div>
+</div>
+</div>
+<!-- Mood Cloud -->
+<div class="col-span-1 md:col-span-7 bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-primary/5 flex flex-col h-full min-h-[300px]">
+<div class="w-full flex justify-between items-center mb-6">
+<h3 class="font-bold text-lg text-neutral-text dark:text-white">Mood Cloud</h3>
+<button class="text-neutral-muted hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="flex-1 relative flex flex-wrap content-center justify-center gap-4 p-4">
+<!-- Mood Tags -->
+<div class="px-5 py-3 rounded-xl bg-[#fff0f5] text-primary text-xl font-bold animate-pulse" style="animation-duration: 3s;">
+                                    🥰 Loved
+                                </div>
+<div class="px-4 py-2 rounded-xl bg-gray-50 dark:bg-slate-700 text-neutral-muted text-sm font-medium">
+                                    😴 Sleepy
+                                </div>
+<div class="px-6 py-4 rounded-xl bg-[#fdf2f8] text-primary text-2xl font-bold">
+                                    🥳 Excited
+                                </div>
+<div class="px-4 py-2 rounded-xl bg-gray-50 dark:bg-slate-700 text-neutral-muted text-base font-medium">
+                                    😤 Busy
+                                </div>
+<div class="px-5 py-3 rounded-xl bg-[#fce7f3] text-primary/80 text-lg font-bold">
+                                    😎 Chill
+                                </div>
+<div class="px-4 py-2 rounded-xl bg-gray-50 dark:bg-slate-700 text-neutral-muted text-xs font-medium">
+                                    🤔 Thinking
+                                </div>
+<div class="px-5 py-3 rounded-xl bg-[#fbcfe8] text-primary text-xl font-bold">
+                                    🤗 Grateful
+                                </div>
+<div class="w-full text-center mt-6 text-neutral-muted text-sm">
+                                    Most felt emotion: <span class="text-primary font-bold">Excited</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Settings & Preferences -->
+<section class="flex flex-col gap-6">
+<h3 class="font-bold text-xl text-neutral-text dark:text-white px-2">Settings &amp; Preferences</h3>
+<div class="bg-white dark:bg-slate-800 rounded-2xl p-1 shadow-sm border border-primary/5 divide-y divide-gray-100 dark:divide-slate-700">
+<!-- Theme Color -->
+<div class="p-5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors rounded-t-xl cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="p-2 bg-purple-100 text-purple-600 rounded-lg group-hover:bg-purple-200 transition-colors">
+<span class="material-symbols-outlined">palette</span>
+</div>
+<div>
+<p class="font-bold text-neutral-text dark:text-white">Theme Color</p>
+<p class="text-sm text-neutral-muted">Customize your app appearance</p>
+</div>
+</div>
+<div class="flex gap-2">
+<div class="size-6 rounded-full bg-primary cursor-pointer ring-2 ring-offset-2 ring-primary"></div>
+<div class="size-6 rounded-full bg-blue-500 cursor-pointer opacity-40 hover:opacity-100 transition-opacity"></div>
+<div class="size-6 rounded-full bg-green-500 cursor-pointer opacity-40 hover:opacity-100 transition-opacity"></div>
+<div class="size-6 rounded-full bg-orange-400 cursor-pointer opacity-40 hover:opacity-100 transition-opacity"></div>
+</div>
+</div>
+<!-- Notifications -->
+<div class="p-5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="p-2 bg-amber-100 text-amber-600 rounded-lg group-hover:bg-amber-200 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</div>
+<div>
+<p class="font-bold text-neutral-text dark:text-white">Notifications</p>
+<p class="text-sm text-neutral-muted">Manage daily reminders</p>
+</div>
+</div>
+<div class="relative inline-flex h-6 w-11 items-center rounded-full bg-primary">
+<span class="translate-x-6 inline-block h-4 w-4 transform rounded-full bg-white transition"></span>
+</div>
+</div>
+<!-- Shared Calendar Sync -->
+<div class="p-5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors rounded-b-xl cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="p-2 bg-blue-100 text-blue-600 rounded-lg group-hover:bg-blue-200 transition-colors">
+<span class="material-symbols-outlined">sync</span>
+</div>
+<div>
+<p class="font-bold text-neutral-text dark:text-white">Calendar Sync</p>
+<p class="text-sm text-neutral-muted">Sync with Google Calendar</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-neutral-muted">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Footer Action -->
+<div class="py-8 flex justify-center">
+<button class="text-neutral-muted hover:text-red-500 text-sm font-medium transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+                            Reset Relationship Data
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

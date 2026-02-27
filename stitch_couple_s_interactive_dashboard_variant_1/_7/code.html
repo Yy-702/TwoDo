@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>共同心愿清单：愿望卡片页</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f06e42",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221510",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "Noto Sans SC", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .heart-pattern {
+            background-color: #f8f6f6;
+            background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z' fill='%23f06e42' fill-opacity='0.05'/%3E%3C/svg%3E");
+        }
+        .dark .heart-pattern {
+            background-color: #221510;
+             background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z' fill='%23f06e42' fill-opacity='0.05'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="heart-pattern min-h-screen text-slate-900 dark:text-slate-100 font-display transition-colors duration-200">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Navbar -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/10 bg-background-light/80 backdrop-blur-md dark:bg-background-dark/80 px-4 md:px-10 py-3">
+<div class="flex items-center gap-4 text-slate-900 dark:text-slate-100">
+<div class="size-8 text-primary">
+<svg fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Together Wishlist</h2>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-full h-10 px-4 bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
+<span class="truncate">Profile</span>
+</button>
+<button class="flex items-center justify-center rounded-full h-10 w-10 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors shadow-sm ring-1 ring-black/5">
+<span class="material-symbols-outlined" style="font-size: 20px;">notifications</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex flex-1 justify-center py-8 px-4 md:px-10">
+<div class="layout-content-container flex flex-col max-w-[1024px] flex-1 w-full">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-8">
+<div class="flex flex-col gap-2">
+<h1 class="text-slate-900 dark:text-slate-100 text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">共同心愿清单</h1>
+<p class="text-slate-500 dark:text-slate-400 text-base font-normal">和Ta一起完成的小确幸，记录我们的点滴美好</p>
+</div>
+<div class="flex gap-2 text-sm font-medium">
+<span class="px-3 py-1 bg-primary/10 text-primary rounded-full">进行中: 3</span>
+<span class="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-500 rounded-full">已完成: 12</span>
+</div>
+</div>
+<!-- Grid Layout for Wish Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-24">
+<!-- Card 1: Saving Money (Progress) -->
+<div class="group relative flex flex-col overflow-hidden rounded-xl bg-white dark:bg-slate-800 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow">
+<div class="h-48 overflow-hidden">
+<img alt="Sunrise over mountains with warm orange glow" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Sunrise landscape" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9ABebtJlSQSyTnzMSKEuH9GNMjpqV8gibAd-JdeO8Fada9y_tJK6PR39UEyihzT35tfubXEGpuw7vnaSZHLyToP64r5hNAkewRnuWY98tv3TvkSGnzAGk6k1ECWywvgLmGXGRZIcwUoQirBaKBASS-oMlR0uj_MzEe-a-A77jOjJZkmfadYvP8cye7_PCB-qzPgrK3M-ZIpF27ldRh51yzDzkG9UYJ7ApnJmFxSw3hAWxSr7wesmfnzKdTVKWoNXDQcoCcjIrmqvg"/>
+</div>
+<div class="flex flex-col p-5 gap-3">
+<div class="flex justify-between items-start">
+<h3 class="text-xl font-bold text-slate-900 dark:text-slate-100">一起看日出</h3>
+<span class="px-2 py-1 text-xs font-bold rounded bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300">进行中</span>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-sm text-slate-500 dark:text-slate-400">
+<span>存钱进度</span>
+<span class="font-medium text-slate-900 dark:text-slate-100">500/1000 元</span>
+</div>
+<div class="h-2 w-full rounded-full bg-slate-100 dark:bg-slate-700 overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 50%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2: Planning (Date) -->
+<div class="group relative flex flex-col overflow-hidden rounded-xl bg-white dark:bg-slate-800 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow">
+<div class="h-48 overflow-hidden">
+<img alt="Cute cat in a cafe setting" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Cat cafe interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBe1-TK6K1UTyyI1v4lhzt-L6zNI6sSge101-4jGprmcilNYLXL_SffHBIWChjfGAZiOxfULfDwd5FWAtDolbjf2DCWKqmgDat0hzZcgxJLLdSlAsCowkx0QVFEc03u22XpQ0PFCDKzrZrDPrYQ79WkuH4vLydv0sG6PyCs8Z4iyu-VXh25CaGoo3YfX3b2HbIe8OGhw22kBYXJs-Fiy-piIgWCoyHmxuZ2tY6LRO6cdgZgfCOE4GqY3xxt-42AuUCyzb-47W9E7c4Z"/>
+</div>
+<div class="flex flex-col p-5 gap-3">
+<div class="flex justify-between items-start">
+<h3 class="text-xl font-bold text-slate-900 dark:text-slate-100">去猫咖</h3>
+<span class="px-2 py-1 text-xs font-bold rounded bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">计划中</span>
+</div>
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-sm">
+<span class="material-symbols-outlined text-primary" style="font-size: 18px;">event</span>
+<span>本周末出发</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Completed (Stamp) -->
+<div class="group relative flex flex-col overflow-hidden rounded-xl bg-white dark:bg-slate-800 shadow-sm border border-slate-100 dark:border-slate-700 opacity-80 hover:opacity-100 transition-opacity">
+<!-- Completed Stamp Overlay -->
+<div class="absolute top-4 right-4 z-10 rotate-12 border-4 border-primary/40 text-primary/40 rounded-full w-24 h-24 flex items-center justify-center font-black text-lg tracking-widest uppercase bg-white/50 backdrop-blur-sm pointer-events-none">
+                                COMPLETED
+                            </div>
+<div class="h-48 overflow-hidden grayscale-[50%] group-hover:grayscale-0 transition-all">
+<img alt="Couple cooking together in a kitchen" class="h-full w-full object-cover" data-alt="Cooking class activity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB31rP4lK6gVb7EDjIeELwHYgd06fae4mqjVZsEzpks-leIK39HUrHjekA1OxogI051k4vZ0CNN4kZi4SzK5BKOguBjh-hggbtLJQAkmkjECVpOB_b2bjy0yeIAKS8z5k3rc_-9QsnjTMDrgv8aPAV271w8HTzY3oLceaJCbknUahzEHbZ6onRVIRjctbZ1NKwTzrav2bGkPTSxWNiRTT17pHAyQ8Tgjam4Q0HjclZz9tohP8AmuC9sFv6wWiXWMifg_FNjruL6jRKy"/>
+</div>
+<div class="flex flex-col p-5 gap-3">
+<div class="flex justify-between items-start">
+<h3 class="text-xl font-bold text-slate-900 dark:text-slate-100 line-through decoration-slate-400">一起做顿饭</h3>
+<span class="px-2 py-1 text-xs font-bold rounded bg-slate-100 text-slate-500 dark:bg-slate-700 dark:text-slate-400">已完成</span>
+</div>
+<div class="flex items-center gap-2 text-slate-400 dark:text-slate-500 text-sm">
+<span class="material-symbols-outlined" style="font-size: 18px;">check_circle</span>
+<span>2023年10月15日 达成</span>
+</div>
+</div>
+</div>
+<!-- Card 4: Simple text wish -->
+<div class="group relative flex flex-col overflow-hidden rounded-xl bg-gradient-to-br from-primary/5 to-white dark:from-primary/10 dark:to-slate-800 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow">
+<div class="flex flex-col p-6 gap-4 h-full justify-between min-h-[240px]">
+<div>
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-white dark:bg-slate-700 rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-primary" style="font-size: 24px;">flight</span>
+</div>
+<span class="px-2 py-1 text-xs font-bold rounded bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300">攒钱中</span>
+</div>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">去日本看樱花</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm">预想明年的春天，在樱花树下野餐。</p>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-sm text-slate-500 dark:text-slate-400">
+<span>目标 20,000 元</span>
+<span class="font-medium text-slate-900 dark:text-slate-100">15%</span>
+</div>
+<div class="h-3 w-full rounded-full bg-white dark:bg-slate-700 overflow-hidden shadow-inner">
+<div class="h-full bg-gradient-to-r from-orange-300 to-primary rounded-full" style="width: 15%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 z-40">
+<button class="group flex items-center gap-2 bg-primary hover:bg-primary/90 text-white rounded-full pl-6 pr-8 h-14 shadow-[0_8px_30px_rgb(240,110,66,0.3)] transition-all hover:scale-105 active:scale-95">
+<div class="flex items-center justify-center bg-white/20 rounded-full w-8 h-8 group-hover:rotate-90 transition-transform duration-300">
+<span class="material-symbols-outlined" style="font-size: 24px;">add</span>
+</div>
+<span class="text-lg font-bold">许个愿</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CoupleToDo - Invite Partner</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b7cee",
+                        "secondary": "#facc15", /* Yellow accent */
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101822",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col overflow-x-hidden">
+<div class="flex flex-col flex-1 h-full w-full">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-10 py-4 sticky top-0 z-50">
+<div class="flex items-center gap-4 text-slate-900 dark:text-slate-100">
+<div class="size-8 text-primary flex items-center justify-center bg-primary/10 rounded-full">
+<span class="material-symbols-outlined text-2xl">favorite</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight tracking-[-0.015em]">CoupleToDo</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<div class="hidden md:flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Home</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Tasks</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Memories</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center overflow-hidden rounded-full h-10 px-6 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-sm font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+<span class="truncate">Log Out</span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 ring-2 ring-primary/20" data-alt="User profile picture showing a smiling woman" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB9BdssLyExgaxUFtUxdWQJ6HBQt7mfFHtbkgqW-wLr59NZwExlUcaJqekMfyz1_2xsP2m83ZGJMGYJtPzmcoKDjhu_MB08O8bbdvl1DDg62gb5jSdBeg8Z7qCrhHy6aPEbzKCMCfRw37DpCwIK5jSaFvXnJyw09w--GFLjzENaI3ClABEY1i7bMA28lHyVu5Bho1e4su2y5WM_fiEYszNoOFUqR1Sm7TUBBcP0iqr_3_wkXEMvR5ql82pnfNaPDEdySsOaWVKENqwK");'></div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex justify-center py-10 px-4 md:px-10">
+<div class="flex flex-col max-w-[800px] w-full items-center gap-8">
+<!-- Title Section -->
+<div class="text-center space-y-3">
+<h1 class="text-slate-900 dark:text-slate-100 text-4xl md:text-5xl font-black leading-tight tracking-tight">Invite Partner</h1>
+<p class="text-slate-500 dark:text-slate-400 text-lg font-normal">Who is your other half? Share the magic code to connect.</p>
+</div>
+<!-- Card Container -->
+<div class="w-full bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 p-8 md:p-12 flex flex-col items-center gap-10">
+<!-- Love Code Section -->
+<div class="w-full flex flex-col items-center gap-6">
+<h2 class="text-primary text-sm font-bold uppercase tracking-widest bg-primary/10 px-4 py-1.5 rounded-full">Your Unique Love Code</h2>
+<div class="flex flex-wrap justify-center gap-3 md:gap-4">
+<!-- Code Digit Inputs -->
+<div class="relative group">
+<div class="absolute inset-0 bg-secondary/30 rounded-2xl blur-sm group-hover:blur-md transition-all"></div>
+<input class="relative flex h-16 w-14 md:h-20 md:w-16 text-center bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-3xl md:text-4xl font-bold rounded-2xl border-2 border-slate-100 dark:border-slate-700 focus:border-primary focus:ring-4 focus:ring-primary/20 outline-none transition-all" readonly="" value="8"/>
+</div>
+<div class="relative group">
+<div class="absolute inset-0 bg-secondary/30 rounded-2xl blur-sm group-hover:blur-md transition-all"></div>
+<input class="relative flex h-16 w-14 md:h-20 md:w-16 text-center bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-3xl md:text-4xl font-bold rounded-2xl border-2 border-slate-100 dark:border-slate-700 focus:border-primary focus:ring-4 focus:ring-primary/20 outline-none transition-all" readonly="" value="3"/>
+</div>
+<div class="relative group">
+<div class="absolute inset-0 bg-secondary/30 rounded-2xl blur-sm group-hover:blur-md transition-all"></div>
+<input class="relative flex h-16 w-14 md:h-20 md:w-16 text-center bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-3xl md:text-4xl font-bold rounded-2xl border-2 border-slate-100 dark:border-slate-700 focus:border-primary focus:ring-4 focus:ring-primary/20 outline-none transition-all" readonly="" value="2"/>
+</div>
+<div class="flex items-center justify-center w-4 md:w-8">
+<span class="block h-1 w-full bg-slate-200 dark:bg-slate-700 rounded-full"></span>
+</div>
+<div class="relative group">
+<div class="absolute inset-0 bg-secondary/30 rounded-2xl blur-sm group-hover:blur-md transition-all"></div>
+<input class="relative flex h-16 w-14 md:h-20 md:w-16 text-center bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-3xl md:text-4xl font-bold rounded-2xl border-2 border-slate-100 dark:border-slate-700 focus:border-primary focus:ring-4 focus:ring-primary/20 outline-none transition-all" readonly="" value="9"/>
+</div>
+<div class="relative group">
+<div class="absolute inset-0 bg-secondary/30 rounded-2xl blur-sm group-hover:blur-md transition-all"></div>
+<input class="relative flex h-16 w-14 md:h-20 md:w-16 text-center bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-3xl md:text-4xl font-bold rounded-2xl border-2 border-slate-100 dark:border-slate-700 focus:border-primary focus:ring-4 focus:ring-primary/20 outline-none transition-all" readonly="" value="1"/>
+</div>
+<div class="relative group">
+<div class="absolute inset-0 bg-secondary/30 rounded-2xl blur-sm group-hover:blur-md transition-all"></div>
+<input class="relative flex h-16 w-14 md:h-20 md:w-16 text-center bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-3xl md:text-4xl font-bold rounded-2xl border-2 border-slate-100 dark:border-slate-700 focus:border-primary focus:ring-4 focus:ring-primary/20 outline-none transition-all" readonly="" value="4"/>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col sm:flex-row w-full max-w-[500px] gap-4">
+<button class="flex-1 h-14 bg-primary hover:bg-blue-600 text-white rounded-full font-bold text-lg flex items-center justify-center gap-2 shadow-lg shadow-primary/30 transition-all hover:scale-[1.02]">
+<span class="material-symbols-outlined">content_copy</span>
+                            Copy Code
+                        </button>
+<button class="flex-1 h-14 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 border-2 border-slate-100 dark:border-slate-700 hover:border-secondary hover:bg-secondary/5 dark:hover:border-secondary rounded-full font-bold text-lg flex items-center justify-center gap-2 transition-all hover:scale-[1.02]">
+<span class="material-symbols-outlined text-secondary">share</span>
+                            Share Link
+                        </button>
+</div>
+<!-- Divider -->
+<div class="w-full h-px bg-slate-100 dark:bg-slate-800"></div>
+<!-- Status Card -->
+<div class="w-full bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-6 flex items-center gap-6 border border-dashed border-slate-200 dark:border-slate-700">
+<!-- Cute Cat Illustration Placeholder -->
+<div class="relative size-24 shrink-0 bg-yellow-100 dark:bg-yellow-900/20 rounded-full flex items-center justify-center overflow-hidden">
+<!-- Using a generic cute cat illustration from unsplash for the placeholder -->
+<img alt="Cute sleeping ginger cat" class="w-full h-full object-cover opacity-90" data-alt="Close up of a cute sleeping ginger cat face" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7U6XdFh_EjtxsIKl0rOvZ0iKqj8Ec-pgmVYQIpS0kV947j_99T998ITP4cYpwXVyHL-JJelQdkz19_NkkVqSyFmSR8VM6phv0T_H8p3gRwRAZu9paRy9TRD-MSw0Lh-Hqt-AahyOxnI3wbo672ya9iEunLSBm7UkaqzGYK5PcfndT9ZMm1mEJ5rcquU8NM9jSoBmz_-SWtvbsD9voNzZdVvo__n7Fu7W0sdx9c9h0abaXnPg2eJegVximUec_hCZEg4-BW3afLdWW"/>
+<div class="absolute bottom-1 right-2 bg-white dark:bg-slate-800 rounded-full p-1 shadow-sm">
+<span class="material-symbols-outlined text-base text-slate-400">bedtime</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold">Waiting for connection...</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm">The kitty is sleeping until your partner joins. Send them the code to wake it up!</p>
+<div class="flex items-center gap-2 mt-2">
+<span class="flex size-2 rounded-full bg-yellow-400 animate-pulse"></span>
+<span class="text-xs font-semibold text-yellow-600 dark:text-yellow-400 uppercase tracking-wider">Listening</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Links -->
+<div class="flex gap-6 text-sm text-slate-400 dark:text-slate-500">
+<a class="hover:text-primary transition-colors" href="#">Help Center</a>
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</main>
+</div>
+</body></html>
