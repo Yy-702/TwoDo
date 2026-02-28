@@ -5,17 +5,9 @@ import { AppTopbar } from "@/components/layout/app-topbar";
 
 describe("AppTopbar", () => {
   it("渲染统一导航并正确标记激活态", () => {
-    render(<AppTopbar activeNav="invite" title="标题" subtitle="副标题" />);
+    render(<AppTopbar activeNav="challenges" title="标题" subtitle="副标题" />);
 
     expect(screen.getByRole("link", { name: "控制面板" })).toHaveAttribute("href", "/app");
-    expect(screen.getByRole("link", { name: "任务清单" })).toHaveAttribute(
-      "href",
-      "/app#todo-board"
-    );
-    expect(screen.getByRole("link", { name: "邀请伙伴" })).toHaveAttribute(
-      "href",
-      "/app/invite"
-    );
     expect(screen.getByRole("link", { name: "回忆墙" })).toHaveAttribute(
       "href",
       "/app/memories"
@@ -29,7 +21,10 @@ describe("AppTopbar", () => {
       "/app/anniversaries"
     );
 
-    expect(screen.getByRole("link", { name: "邀请伙伴" })).toHaveAttribute(
+    expect(screen.queryByRole("link", { name: "任务清单" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "邀请伙伴" })).not.toBeInTheDocument();
+
+    expect(screen.getByRole("link", { name: "双人挑战" })).toHaveAttribute(
       "aria-current",
       "page"
     );

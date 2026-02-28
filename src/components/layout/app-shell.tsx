@@ -73,16 +73,6 @@ export function AppShell({
                 <span className="font-display text-base font-bold">控制面板</span>
               </Link>
 
-              <a href="#todo-board" className={navClass(false)}>
-                <span className="text-lg">✓</span>
-                <span className="font-display text-base font-semibold">任务清单</span>
-              </a>
-
-              <Link href="/app/invite" className={navClass(activeNav === "invite")}>
-                <span className="text-lg">❤</span>
-                <span className="font-display text-base font-semibold">邀请伙伴</span>
-              </Link>
-
               <Link href="/app/challenges" className={navClass(activeNav === "challenges")}>
                 <span className="text-lg">🔥</span>
                 <span className="font-display text-base font-semibold">双人挑战</span>

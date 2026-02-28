@@ -47,11 +47,8 @@ describe("AppShell", () => {
     const dashboardLinks = screen.getAllByRole("link", { name: "控制面板" });
     expect(dashboardLinks.some((link) => link.getAttribute("href") === "/app")).toBe(true);
 
-    const todoLinks = screen.getAllByRole("link", { name: "任务清单" });
-    expect(todoLinks.some((link) => link.getAttribute("href") === "/app#todo-board")).toBe(true);
-
-    const inviteLinks = screen.getAllByRole("link", { name: "邀请伙伴" });
-    expect(inviteLinks.some((link) => link.getAttribute("href") === "/app/invite")).toBe(true);
+    expect(screen.queryByRole("link", { name: "任务清单" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "邀请伙伴" })).not.toBeInTheDocument();
 
     const challengeLinks = screen.getAllByRole("link", { name: "双人挑战" });
     expect(
