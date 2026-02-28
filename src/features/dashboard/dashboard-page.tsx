@@ -710,6 +710,66 @@ export function DashboardPage() {
         </div>
       ) : (
         <>
+          <section id="todo-board">
+            <div className="mb-5 grid gap-4 lg:mb-6 lg:grid-cols-[1fr_auto] lg:items-end">
+              <div className="min-w-0">
+                <h3 className="font-display text-2xl font-bold text-slate-900 sm:text-3xl">置顶任务</h3>
+                <p className="mt-1 text-sm text-slate-500">当前空间任务会实时同步给双方</p>
+              </div>
+
+              <div className="flex flex-col gap-3 lg:items-end">
+                <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                  <article className="rounded-xl border border-slate-100 bg-white px-3 py-2 text-center sm:px-4">
+                    <p className="font-display text-xl font-bold text-slate-900 sm:text-2xl">{todos.length}</p>
+                    <p className="mt-0.5 text-[11px] font-semibold text-slate-500 sm:text-xs">总任务</p>
+                  </article>
+                  <article className="rounded-xl border border-slate-100 bg-white px-3 py-2 text-center sm:px-4">
+                    <p className="font-display text-xl font-bold text-slate-900 sm:text-2xl">{pendingCount}</p>
+                    <p className="mt-0.5 text-[11px] font-semibold text-slate-500 sm:text-xs">待办</p>
+                  </article>
+                  <article className="rounded-xl border border-slate-100 bg-white px-3 py-2 text-center sm:px-4">
+                    <p className="font-display text-xl font-bold text-slate-900 sm:text-2xl">{completedCount}</p>
+                    <p className="mt-0.5 text-[11px] font-semibold text-slate-500 sm:text-xs">已完成</p>
+                  </article>
+                </div>
+
+                <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap lg:justify-end">
+                  {!hasSharedSpace ? (
+                    <button
+                      type="button"
+                      className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 transition hover:border-primary hover:text-primary sm:w-auto"
+                      onClick={() => router.push("/app/invite")}
+                    >
+                      邀请伙伴
+                    </button>
+                  ) : null}
+                  <button
+                    type="button"
+                    className="w-full rounded-xl bg-primary px-4 py-2 text-sm font-bold text-white shadow-md shadow-primary/25 transition hover:opacity-90 sm:w-auto"
+                    onClick={openCreateModal}
+                  >
+                    新建任务
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="mb-6 rounded-2xl border border-slate-100 bg-white p-4">
+              <SpaceSwitcher
+                spaces={spaces}
+                currentSpaceId={currentSpaceId}
+                onChange={(id) => void switchSpace(id)}
+              />
+            </div>
+
+            <TodoList
+              todos={todos}
+              onToggleComplete={(todo) => void toggleComplete(todo)}
+              onEdit={openEditModal}
+              onDelete={(todo) => void deleteTodo(todo)}
+            />
+          </section>
+
           <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-3">
             <section className="relative overflow-hidden rounded-3xl border border-slate-100 bg-white p-4 shadow-sm sm:p-6 lg:col-span-2">
               <div className="absolute right-4 top-0 rotate-12 text-7xl text-primary/10">☺</div>
@@ -763,65 +823,6 @@ export function DashboardPage() {
               </div>
             </section>
           </div>
-
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
-            <article className="rounded-2xl border border-slate-100 bg-white p-3 text-center sm:p-4">
-              <p className="font-display text-3xl font-bold text-primary sm:text-4xl">{spaces.length}</p>
-              <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500">空间数量</p>
-            </article>
-            <article className="rounded-2xl border border-slate-100 bg-white p-3 text-center sm:p-4">
-              <p className="font-display text-3xl font-bold text-slate-900 sm:text-4xl">{todos.length}</p>
-              <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500">总任务数</p>
-            </article>
-            <article className="rounded-2xl border border-slate-100 bg-white p-3 text-center sm:p-4">
-              <p className="font-display text-3xl font-bold text-slate-900 sm:text-4xl">{pendingCount}</p>
-              <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500">待办任务</p>
-            </article>
-            <article className="rounded-2xl border border-slate-100 bg-white p-3 text-center sm:p-4">
-              <p className="font-display text-3xl font-bold text-slate-900 sm:text-4xl">{completedCount}</p>
-              <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500">已完成</p>
-            </article>
-          </div>
-
-          <section id="todo-board" className="mt-1">
-            <div className="mb-5 flex flex-col gap-4 lg:mb-6 lg:flex-row lg:items-end lg:justify-between">
-              <div>
-                <h3 className="font-display text-2xl font-bold text-slate-900 sm:text-3xl">置顶任务</h3>
-                <p className="mt-1 text-sm text-slate-500">当前空间任务会实时同步给双方</p>
-              </div>
-              <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
-                <button
-                  type="button"
-                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 transition hover:border-primary hover:text-primary sm:w-auto"
-                  onClick={() => router.push("/app/invite")}
-                >
-                  邀请伙伴
-                </button>
-                <button
-                  type="button"
-                  className="w-full rounded-xl bg-primary px-4 py-2 text-sm font-bold text-white shadow-md shadow-primary/25 transition hover:opacity-90 sm:w-auto"
-                  onClick={openCreateModal}
-                >
-                  新建任务
-                </button>
-              </div>
-            </div>
-
-            <div className="mb-6 rounded-2xl border border-slate-100 bg-white p-4">
-              <SpaceSwitcher
-                spaces={spaces}
-                currentSpaceId={currentSpaceId}
-                onChange={(id) => void switchSpace(id)}
-              />
-            </div>
-
-            <TodoList
-              todos={todos}
-              onToggleComplete={(todo) => void toggleComplete(todo)}
-              onEdit={openEditModal}
-              onDelete={(todo) => void deleteTodo(todo)}
-            />
-          </section>
 
           <PhotoStrip
             photos={photos}

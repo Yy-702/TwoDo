@@ -46,7 +46,7 @@ export function TodoEditorModal({
     return true;
   }, [form]);
 
-  const headerTitle = mode === "create" ? "Create Task" : "Edit Task";
+  const headerTitle = mode === "create" ? "新建任务" : "编辑任务";
   const pickedMembers = members.slice(0, 2);
 
   return (
@@ -61,7 +61,7 @@ export function TodoEditorModal({
             <h3 className="font-brand text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
               {headerTitle}
             </h3>
-            <p className="mt-1 text-sm text-slate-500">Make plans together ✨</p>
+            <p className="mt-1 text-sm text-slate-500">一起安排计划 ✨</p>
           </div>
           <button
             type="button"
@@ -74,14 +74,14 @@ export function TodoEditorModal({
 
         <div className="grid gap-4 px-4 py-2 sm:gap-5 sm:px-8">
           <label className="grid gap-2">
-            <span className="text-sm font-semibold text-slate-800">Task Name</span>
+            <span className="text-sm font-semibold text-slate-800">任务名称</span>
             <div className="flex items-center rounded-xl border border-transparent bg-[#f8f8f6] p-1 focus-within:border-[#e8e830] focus-within:ring-2 focus-within:ring-[#e8e830]/40">
               <input
                 value={form.title}
                 onChange={(event) =>
                   setForm((prev) => ({ ...prev, title: event.target.value }))
                 }
-                placeholder="What needs to be done?"
+                placeholder="这次要完成什么？"
                 className="h-11 flex-1 border-none bg-transparent px-4 text-base font-medium text-slate-800 outline-none"
               />
               <span className="mr-1 flex size-10 items-center justify-center rounded-lg bg-[#e8e830]/20 text-xl text-[#9d9d17]">
@@ -91,7 +91,7 @@ export function TodoEditorModal({
           </label>
 
           <div className="grid gap-2">
-            <span className="text-sm font-semibold text-slate-800">Assign To</span>
+            <span className="text-sm font-semibold text-slate-800">分配给</span>
             <div className="grid grid-cols-3 gap-1 rounded-full bg-[#f8f8f6] p-1.5">
               <button
                 type="button"
@@ -108,7 +108,7 @@ export function TodoEditorModal({
                     : "text-slate-500"
                 }`}
               >
-                👥 Both
+                👥 双方
               </button>
 
               {pickedMembers.map((member) => {
@@ -130,7 +130,7 @@ export function TodoEditorModal({
                       active ? "bg-white text-slate-900 shadow-sm" : "text-slate-500"
                     }`}
                   >
-                    {member.label === "我" ? "🙂 Him" : "🙋 Her"}
+                    {member.label === "我" ? "🙂 我" : `🙋 ${member.label}`}
                   </button>
                 );
               })}
@@ -143,7 +143,7 @@ export function TodoEditorModal({
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
             <label className="grid gap-2">
-              <span className="text-sm font-semibold text-slate-800">Due Date</span>
+              <span className="text-sm font-semibold text-slate-800">截止日期</span>
               <div className="flex items-center rounded-xl bg-[#f8f8f6] p-1">
                 <input
                   type="date"
@@ -158,7 +158,7 @@ export function TodoEditorModal({
             </label>
 
             <label className="grid gap-2">
-              <span className="text-sm font-semibold text-slate-800">Time</span>
+              <span className="text-sm font-semibold text-slate-800">时间</span>
               <div className="flex items-center rounded-xl bg-[#f8f8f6] p-1">
                 <input
                   type="time"
@@ -174,14 +174,14 @@ export function TodoEditorModal({
           </div>
 
           <label className="grid gap-2">
-            <span className="text-sm font-semibold text-slate-800">Leave a note</span>
+            <span className="text-sm font-semibold text-slate-800">备注</span>
             <div className="relative">
               <textarea
                 value={form.description}
                 onChange={(event) =>
                   setForm((prev) => ({ ...prev, description: event.target.value }))
                 }
-                placeholder="Add a sweet message or details..."
+                placeholder="写下细节或提醒..."
                 className="min-h-[100px] w-full resize-none rounded-3xl border-none bg-[#f8f8f6] p-4 text-sm text-slate-700 outline-none"
               />
               <div className="absolute bottom-3 right-3 flex gap-2 text-slate-400">
@@ -198,7 +198,7 @@ export function TodoEditorModal({
           <button
             type="button"
             className="relative flex size-12 items-center justify-center rounded-2xl bg-[#fff8e1] text-xl text-[#ffb74d] shadow-sm sm:size-14"
-            title="Nudge TA"
+            title="提醒功能即将支持"
             disabled
           >
             🔔
@@ -226,7 +226,7 @@ export function TodoEditorModal({
                 }}
                 disabled={saving}
               >
-                Delete
+                删除
               </button>
             ) : null}
 
@@ -246,7 +246,7 @@ export function TodoEditorModal({
                 }
               }}
             >
-              ✓ {saving ? "Saving..." : "Save Changes"}
+              ✓ {saving ? "保存中..." : "保存"}
             </button>
           </div>
         </div>
