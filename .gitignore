@@ -27,6 +27,7 @@
 *.pem
 /public/sw.js
 /public/workbox-*.js
+TODO.md
 
 # debug
 npm-debug.log*

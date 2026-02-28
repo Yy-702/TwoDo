@@ -45,6 +45,7 @@ describe("PhotoStrip", () => {
       objectPath: "s1/u1/a.jpg",
       mimeType: "image/jpeg",
       sizeBytes: 100,
+      caption: null,
       createdAt: "2026-01-01T00:00:00.000Z",
       publicUrl: "https://example.com/a.jpg",
     };

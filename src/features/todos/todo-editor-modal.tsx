@@ -50,11 +50,17 @@ export function TodoEditorModal({
   const pickedMembers = members.slice(0, 2);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
-      <div className="w-full max-w-[520px] overflow-hidden rounded-3xl border border-[#e5e5e0] bg-white shadow-2xl">
-        <div className="flex items-start justify-between px-8 pb-4 pt-8">
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 p-2 backdrop-blur-sm sm:items-center sm:p-4">
+      <div
+        role="dialog"
+        aria-modal="true"
+        className="max-h-[90dvh] w-full max-w-[520px] overflow-y-auto rounded-t-3xl border border-[#e5e5e0] bg-white shadow-2xl sm:rounded-3xl"
+      >
+        <div className="flex items-start justify-between px-4 pb-3 pt-5 sm:px-8 sm:pb-4 sm:pt-8">
           <div>
-            <h3 className="text-4xl font-black tracking-tight text-slate-900 font-brand">{headerTitle}</h3>
+            <h3 className="font-brand text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
+              {headerTitle}
+            </h3>
             <p className="mt-1 text-sm text-slate-500">Make plans together ✨</p>
           </div>
           <button
@@ -66,7 +72,7 @@ export function TodoEditorModal({
           </button>
         </div>
 
-        <div className="grid gap-5 px-8 py-2">
+        <div className="grid gap-4 px-4 py-2 sm:gap-5 sm:px-8">
           <label className="grid gap-2">
             <span className="text-sm font-semibold text-slate-800">Task Name</span>
             <div className="flex items-center rounded-xl border border-transparent bg-[#f8f8f6] p-1 focus-within:border-[#e8e830] focus-within:ring-2 focus-within:ring-[#e8e830]/40">
@@ -135,7 +141,7 @@ export function TodoEditorModal({
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
             <label className="grid gap-2">
               <span className="text-sm font-semibold text-slate-800">Due Date</span>
               <div className="flex items-center rounded-xl bg-[#f8f8f6] p-1">
@@ -188,17 +194,17 @@ export function TodoEditorModal({
           {error ? <p className="text-sm text-rose-600">{error}</p> : null}
         </div>
 
-        <div className="mt-4 flex items-center justify-between gap-4 border-t border-slate-100 px-8 pb-8 pt-6">
+        <div className="sticky bottom-0 mt-4 flex items-center justify-between gap-3 border-t border-slate-100 bg-white px-4 pb-4 pt-4 sm:gap-4 sm:px-8 sm:pb-8 sm:pt-6">
           <button
             type="button"
-            className="relative flex size-14 items-center justify-center rounded-2xl bg-[#fff8e1] text-xl text-[#ffb74d] shadow-sm"
+            className="relative flex size-12 items-center justify-center rounded-2xl bg-[#fff8e1] text-xl text-[#ffb74d] shadow-sm sm:size-14"
             title="Nudge TA"
             disabled
           >
             🔔
           </button>
 
-          <div className="flex flex-1 items-center justify-end gap-3">
+          <div className="flex flex-1 items-center justify-end gap-2 sm:gap-3">
             {mode === "edit" ? (
               <button
                 type="button"
@@ -226,7 +232,7 @@ export function TodoEditorModal({
 
             <button
               type="button"
-              className="flex items-center gap-2 rounded-full bg-[#e8e830] px-8 py-3 font-bold text-[#4d4d10] shadow-lg shadow-[#e8e830]/30 transition-all hover:bg-[#eaea45] disabled:cursor-not-allowed disabled:opacity-60"
+              className="flex items-center gap-2 rounded-full bg-[#e8e830] px-5 py-2.5 text-sm font-bold text-[#4d4d10] shadow-lg shadow-[#e8e830]/30 transition-all hover:bg-[#eaea45] disabled:cursor-not-allowed disabled:opacity-60 sm:px-8 sm:py-3 sm:text-base"
               disabled={!canSubmit || saving}
               onClick={async () => {
                 setSaving(true);

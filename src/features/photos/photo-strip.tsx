@@ -28,7 +28,7 @@ export function PhotoStrip({
   return (
     <section>
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="font-display text-3xl font-bold text-slate-900">最近的照片 📸</h3>
+        <h3 className="font-display text-2xl font-bold text-slate-900 sm:text-3xl">最近的照片 📸</h3>
       </div>
 
       {listState === "loading" ? (
@@ -38,14 +38,14 @@ export function PhotoStrip({
       ) : null}
 
       {listState !== "loading" ? (
-        <div className="flex gap-4 overflow-x-auto pb-4">
+        <div className="flex gap-3 overflow-x-auto pb-4 sm:gap-4">
           {photos.map((photo, index) => (
             <article
               key={photo.id}
-              className={`${index % 2 === 0 ? "rotate-2" : "-rotate-1"} group relative h-64 w-48 shrink-0 rounded-lg border border-slate-200 bg-white p-2 pb-8 shadow-sm transition-transform duration-300 hover:rotate-0`}
+              className={`${index % 2 === 0 ? "rotate-2" : "-rotate-1"} group relative h-56 w-40 shrink-0 rounded-lg border border-slate-200 bg-white p-2 pb-8 shadow-sm transition-transform duration-300 hover:rotate-0 sm:h-64 sm:w-48`}
             >
               <div
-                className="mb-2 h-48 rounded bg-slate-100"
+                className="mb-2 h-40 rounded bg-slate-100 sm:h-48"
                 style={{
                   backgroundImage: `url(${photo.publicUrl})`,
                   backgroundPosition: "center",
@@ -81,7 +81,7 @@ export function PhotoStrip({
 
           <button
             type="button"
-            className="flex h-64 w-48 shrink-0 items-center justify-center rounded-lg border-2 border-dashed border-slate-300 bg-slate-100 text-slate-400 transition-colors hover:bg-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
+            className="flex h-56 w-40 shrink-0 items-center justify-center rounded-lg border-2 border-dashed border-slate-300 bg-slate-100 text-slate-400 transition-colors hover:bg-slate-200 disabled:cursor-not-allowed disabled:opacity-60 sm:h-64 sm:w-48"
             onClick={() => fileInputRef.current?.click()}
             disabled={uploadingPhoto}
           >

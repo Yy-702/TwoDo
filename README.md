@@ -45,6 +45,9 @@ npm run dev
 - `006_fix_join_shared_space_lookup.sql`
 - `007_shared_space_constraints_and_close_handshake.sql`
 - `008_profile_avatar_and_storage.sql`
+- `009_space_photos_upload.sql`
+- `010_space_photos_caption.sql`
+- `011_anniversaries.sql`
 
 请按顺序在 Supabase SQL Editor 执行，或使用 Supabase CLI 执行迁移。
 
@@ -57,6 +60,8 @@ npm run dev
 
 - `/login`
 - `/app`
+- `/app/memories`
+- `/app/anniversaries`
 - `/app/invite`
 - `/app/invite/success`
 

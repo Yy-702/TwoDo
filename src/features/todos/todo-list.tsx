@@ -68,14 +68,14 @@ export function TodoList({
   }
 
   return (
-    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+    <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
       {todos.map((todo, index) => {
         const palette = NOTE_STYLES[index % NOTE_STYLES.length];
 
         return (
           <article
             key={todo.id}
-            className={`group relative rounded-xl p-6 shadow-md transition-transform duration-300 hover:rotate-0 ${palette.wrap} ${palette.rotate}`}
+            className={`group relative rounded-xl p-5 shadow-md transition-transform duration-300 hover:rotate-0 sm:p-6 ${palette.wrap} ${palette.rotate}`}
           >
             <span className="pin-top" style={{ backgroundColor: palette.pinColor }} />
 
@@ -95,7 +95,7 @@ export function TodoList({
             </div>
 
             <h4
-              className={`font-display text-2xl font-bold text-slate-800 ${
+              className={`font-display text-xl font-bold text-slate-800 sm:text-2xl ${
                 todo.is_completed ? "line-through opacity-50" : ""
               }`}
             >
@@ -119,7 +119,7 @@ export function TodoList({
               </p>
             </div>
 
-            <div className="mt-4 flex items-center gap-2">
+            <div className="mt-4 flex flex-wrap items-center gap-2">
               <button
                 type="button"
                 onClick={() => onToggleComplete(todo)}

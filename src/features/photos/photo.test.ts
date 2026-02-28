@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import {
+  SPACE_PHOTO_CAPTION_MAX_LENGTH,
   SPACE_PHOTO_MAX_BYTES,
   buildSpacePhotoPath,
   deleteSpacePhotoWithRecord,
@@ -99,7 +100,148 @@ describe("photo", () => {
     expect(removedPath.startsWith("space-1/user-1/")).toBe(true);
   });
 
+  it("Photo_Upload_Caption_TrimmedAndSaved", async () => {
+    const storageFrom = createStorageFromMock();
+    const insertedRow = {
+      id: "p1",
+      space_id: "space-1",
+      uploaded_by: "user-1",
+      object_path: "space-1/user-1/a.jpg",
+      mime_type: "image/jpeg",
+      size_bytes: 123,
+      caption: "海边散步",
+      created_at: "2026-01-01T00:00:00.000Z",
+    };
+    const single = vi.fn().mockResolvedValue({
+      data: insertedRow,
+      error: null,
+    });
+    const select = vi.fn(() => ({ single }));
+    const insert = vi.fn(() => ({ select }));
+
+    const supabase = {
+      storage: {
+        from: vi.fn(() => storageFrom),
+      },
+      from: vi.fn(() => ({ insert })),
+    } as unknown as Parameters<typeof uploadSpacePhotoWithRecord>[0]["supabase"];
+
+    const result = await uploadSpacePhotoWithRecord({
+      supabase,
+      spaceId: "space-1",
+      userId: "user-1",
+      file: {
+        type: "image/jpeg",
+        size: 1024,
+        name: "photo.jpg",
+      } as File,
+      caption: "  海边散步  ",
+    });
+
+    expect(result.ok).toBe(true);
+    const payload = insert.mock.calls[0]?.[0] as { caption: string | null };
+    expect(payload.caption).toBe("海边散步");
+  });
+
+  it("Photo_Upload_Caption_EmptyToNull_And_MaxLength", async () => {
+    const storageFrom = createStorageFromMock();
+    const insertedRow = {
+      id: "p1",
+      space_id: "space-1",
+      uploaded_by: "user-1",
+      object_path: "space-1/user-1/a.jpg",
+      mime_type: "image/jpeg",
+      size_bytes: 123,
+      caption: null,
+      created_at: "2026-01-01T00:00:00.000Z",
+    };
+    const single = vi.fn().mockResolvedValue({
+      data: insertedRow,
+      error: null,
+    });
+    const select = vi.fn(() => ({ single }));
+    const insert = vi.fn(() => ({ select }));
+
+    const supabase = {
+      storage: {
+        from: vi.fn(() => storageFrom),
+      },
+      from: vi.fn(() => ({ insert })),
+    } as unknown as Parameters<typeof uploadSpacePhotoWithRecord>[0]["supabase"];
+
+    await uploadSpacePhotoWithRecord({
+      supabase,
+      spaceId: "space-1",
+      userId: "user-1",
+      file: {
+        type: "image/jpeg",
+        size: 1024,
+        name: "photo.jpg",
+      } as File,
+      caption: "   ",
+    });
+
+    const nullPayload = insert.mock.calls[0]?.[0] as { caption: string | null };
+    expect(nullPayload.caption).toBeNull();
+
+    await uploadSpacePhotoWithRecord({
+      supabase,
+      spaceId: "space-1",
+      userId: "user-1",
+      file: {
+        type: "image/jpeg",
+        size: 1024,
+        name: "photo.jpg",
+      } as File,
+      caption: "a".repeat(SPACE_PHOTO_CAPTION_MAX_LENGTH + 10),
+    });
+
+    const slicedPayload = insert.mock.calls[1]?.[0] as { caption: string | null };
+    expect(slicedPayload.caption?.length).toBe(SPACE_PHOTO_CAPTION_MAX_LENGTH);
+  });
+
   it("Photo_List_Latest20Desc", async () => {
+    const rows = [
+      {
+        id: "p1",
+        space_id: "space-1",
+        uploaded_by: "u1",
+        object_path: "space-1/u1/1.jpg",
+        mime_type: "image/jpeg",
+        size_bytes: 123,
+        caption: null,
+        created_at: "2026-01-01T00:00:00.000Z",
+      },
+    ];
+
+    const query = {
+      select: vi.fn().mockReturnThis(),
+      eq: vi.fn().mockReturnThis(),
+      order: vi.fn().mockReturnThis(),
+      limit: vi.fn().mockResolvedValue({ data: rows, error: null }),
+    };
+
+    const storageFrom = createStorageFromMock();
+    const supabase = {
+      from: vi.fn(() => query),
+      storage: {
+        from: vi.fn(() => storageFrom),
+      },
+    } as unknown as Parameters<typeof loadRecentSpacePhotos>[0]["supabase"];
+
+    const result = await loadRecentSpacePhotos({
+      supabase,
+      spaceId: "space-1",
+    });
+
+    expect(query.order).toHaveBeenCalledWith("created_at", { ascending: false });
+    expect(query.limit).toHaveBeenCalledWith(20);
+    expect(result.length).toBe(1);
+    expect(result[0]?.publicUrl).toContain("space-1/u1/1.jpg");
+    expect(result[0]?.caption).toBeNull();
+  });
+
+  it("Photo_List_MissingCaptionField_FallbackNull", async () => {
     const rows = [
       {
         id: "p1",
@@ -132,10 +274,7 @@ describe("photo", () => {
       spaceId: "space-1",
     });
 
-    expect(query.order).toHaveBeenCalledWith("created_at", { ascending: false });
-    expect(query.limit).toHaveBeenCalledWith(20);
-    expect(result.length).toBe(1);
-    expect(result[0]?.publicUrl).toContain("space-1/u1/1.jpg");
+    expect(result[0]?.caption).toBeNull();
   });
 
   it("Photo_Delete_ByUploader_Success", () => {

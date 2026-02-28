@@ -1,14 +1,16 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { AppTopbar } from "@/components/layout/app-topbar";
 import { UserAvatar } from "@/components/profile/user-avatar";
 
 type AppShellProps = {
   title: string;
   subtitle: string;
-  activeNav: "dashboard" | "invite";
+  activeNav: "dashboard" | "invite" | "challenges" | "memories" | "anniversaries";
   actions?: ReactNode;
   currentUserAvatarUrl?: string | null;
   currentUserDisplayName?: string | null;
+  onSignOut?: () => Promise<void> | void;
   onEditAvatar?: () => void;
   avatarUploading?: boolean;
   children: ReactNode;
@@ -22,6 +24,14 @@ function navClass(active: boolean) {
   return "flex items-center gap-3 rounded-2xl px-4 py-3 text-slate-600 transition-colors hover:bg-slate-50";
 }
 
+function mobileNavClass(active: boolean) {
+  if (active) {
+    return "flex min-w-0 flex-1 items-center justify-center rounded-2xl bg-primary px-3 py-2 text-xs font-bold text-white shadow-md shadow-primary/20";
+  }
+
+  return "flex min-w-0 flex-1 items-center justify-center rounded-2xl px-3 py-2 text-xs font-semibold text-slate-600 transition-colors hover:bg-slate-50";
+}
+
 export function AppShell({
   title,
   subtitle,
@@ -29,12 +39,13 @@ export function AppShell({
   actions,
   currentUserAvatarUrl = null,
   currentUserDisplayName = null,
+  onSignOut,
   onEditAvatar,
   avatarUploading = false,
   children,
 }: AppShellProps) {
   return (
-    <div className="relative flex h-screen w-full overflow-hidden bg-background">
+    <div className="relative flex min-h-dvh w-full overflow-hidden bg-background lg:h-screen">
       <aside className="hidden h-full w-80 shrink-0 border-r border-slate-100 bg-white shadow-sm lg:flex">
         <div className="flex h-full w-full flex-col justify-between p-6">
           <div className="flex flex-col gap-6">
@@ -79,10 +90,23 @@ export function AppShell({
                 <span className="font-display text-base font-semibold">邀请伙伴</span>
               </Link>
 
-              <span className="flex items-center gap-3 rounded-2xl px-4 py-3 text-slate-400">
+              <Link href="/app/challenges" className={navClass(activeNav === "challenges")}>
+                <span className="text-lg">🔥</span>
+                <span className="font-display text-base font-semibold">双人挑战</span>
+              </Link>
+
+              <Link href="/app/memories" className={navClass(activeNav === "memories")}>
+                <span className="text-lg">📷</span>
+                <span className="font-display text-base font-semibold">回忆墙</span>
+              </Link>
+
+              <Link
+                href="/app/anniversaries"
+                className={navClass(activeNav === "anniversaries")}
+              >
                 <span className="text-lg">🗓</span>
-                <span className="font-display text-base font-semibold">专属日历</span>
-              </span>
+                <span className="font-display text-base font-semibold">纪念日</span>
+              </Link>
 
               <span className="flex items-center gap-3 rounded-2xl px-4 py-3 text-slate-400">
                 <span className="text-lg">⚙</span>
@@ -91,52 +115,56 @@ export function AppShell({
             </nav>
           </div>
 
-          <button
-            type="button"
-            className="h-12 w-full rounded-2xl bg-slate-900 text-sm font-bold text-white shadow-lg"
-            disabled
+          <Link
+            href="/app/memories"
+            className="flex h-12 w-full items-center justify-center rounded-2xl bg-slate-900 text-sm font-bold text-white shadow-lg transition hover:bg-slate-700"
           >
             ＋ 记录新回忆
-          </button>
+          </Link>
         </div>
       </aside>
 
-      <main className="flex-1 overflow-y-auto bg-grid-paper">
-        <header className="sticky top-0 z-10 border-b border-slate-100 bg-white/85 px-4 py-4 backdrop-blur md:px-8 md:py-5">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <span className="flex size-10 items-center justify-center rounded-full bg-yellow-100 text-lg text-yellow-600">
-                ☀
-              </span>
-              <div>
-                <h2 className="font-display text-xl font-bold text-slate-900">{title}</h2>
-                <p className="text-xs font-medium text-slate-500">{subtitle}</p>
-              </div>
-            </div>
+      <main className="flex-1 overflow-y-auto bg-grid-paper pb-[calc(env(safe-area-inset-bottom)+5.5rem)] lg:pb-0">
+        <AppTopbar
+          activeNav={activeNav}
+          title={title}
+          subtitle={subtitle}
+          currentUserAvatarUrl={currentUserAvatarUrl}
+          currentUserDisplayName={currentUserDisplayName}
+          onSignOut={onSignOut}
+          rightActions={actions}
+        />
 
-            <div className="flex items-center gap-2 md:gap-3">
-              <button
-                type="button"
-                className="relative flex size-10 items-center justify-center rounded-full border border-slate-100 bg-white text-slate-600 shadow-sm"
-              >
-                🔔
-                <span className="absolute right-2 top-2 size-2 rounded-full bg-primary" />
-              </button>
-              <button
-                type="button"
-                className="flex size-10 items-center justify-center rounded-full border border-slate-100 bg-white text-slate-600 shadow-sm"
-              >
-                🔎
-              </button>
-              {actions}
-            </div>
-          </div>
-        </header>
-
-        <section className="mx-auto flex w-full max-w-7xl flex-col gap-8 p-4 pb-20 md:p-8">
+        <section className="mx-auto flex w-full max-w-7xl flex-col gap-6 p-3 pb-16 sm:p-4 sm:pb-20 md:gap-8 md:p-8">
           {children}
         </section>
       </main>
+
+      <nav className="fixed inset-x-0 bottom-0 z-30 border-t border-slate-200 bg-white/95 px-3 py-3 backdrop-blur lg:hidden">
+        <div className="mx-auto flex max-w-xl items-center gap-2">
+          <Link href="/app" className={mobileNavClass(activeNav === "dashboard")}>
+            控制面板
+          </Link>
+          <Link href="/app#todo-board" className={mobileNavClass(false)}>
+            任务清单
+          </Link>
+          <Link href="/app/invite" className={mobileNavClass(activeNav === "invite")}>
+            邀请伙伴
+          </Link>
+          <Link href="/app/challenges" className={mobileNavClass(activeNav === "challenges")}>
+            双人挑战
+          </Link>
+          <Link href="/app/memories" className={mobileNavClass(activeNav === "memories")}>
+            回忆墙
+          </Link>
+          <Link
+            href="/app/anniversaries"
+            className={mobileNavClass(activeNav === "anniversaries")}
+          >
+            纪念日
+          </Link>
+        </div>
+      </nav>
     </div>
   );
 }

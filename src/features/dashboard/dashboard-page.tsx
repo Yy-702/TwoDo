@@ -12,6 +12,7 @@ import { TodoList } from "@/features/todos/todo-list";
 import { TodoEditorModal } from "@/features/todos/todo-editor-modal";
 import { deriveAssigneeMode, mapAssigneeModeToUserId } from "@/features/todos/assignee";
 import { MoodSelector } from "@/features/dashboard/mood-selector";
+import { pickDailyChallenge, toShanghaiChallengeDate } from "@/features/challenges/challenge";
 import { AvatarEditorModal } from "@/features/profile/avatar-editor-modal";
 import {
   getAvatarPublicUrl,
@@ -631,6 +632,10 @@ export function DashboardPage() {
   const completedCount = todos.filter((todo) => todo.is_completed).length;
   const pendingCount = todos.length - completedCount;
   const coupleMembers = members.slice(0, 2);
+  const todayChallenge = useMemo(
+    () => pickDailyChallenge(toShanghaiChallengeDate()),
+    []
+  );
   const canDeletePhoto = (photo: SpacePhoto) => {
     if (!userId || !currentSpace) {
       return false;
@@ -663,6 +668,7 @@ export function DashboardPage() {
         setAvatarError(null);
         setAvatarModalOpen(true);
       }}
+      onSignOut={signOut}
       avatarUploading={avatarUploading}
       actions={
         <>
@@ -680,7 +686,7 @@ export function DashboardPage() {
           {hasSharedSpace ? (
             <button
               type="button"
-              className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 transition hover:border-primary hover:text-primary"
+              className="hidden rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 transition hover:border-primary hover:text-primary sm:inline-flex"
               onClick={() => router.push("/app/invite")}
             >
               管理共享空间
@@ -688,20 +694,13 @@ export function DashboardPage() {
           ) : (
             <button
               type="button"
-              className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 transition hover:border-primary hover:text-primary"
+              className="hidden rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 transition hover:border-primary hover:text-primary sm:inline-flex"
               onClick={() => void createSharedSpace()}
               disabled={saving}
             >
               {saving ? "创建中..." : "创建共享空间"}
             </button>
           )}
-          <button
-            type="button"
-            className="rounded-xl bg-slate-900 px-3 py-2 text-sm font-semibold text-white transition hover:bg-slate-700"
-            onClick={() => void signOut()}
-          >
-            退出
-          </button>
         </>
       }
     >
@@ -711,24 +710,26 @@ export function DashboardPage() {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-            <section className="relative overflow-hidden rounded-3xl border border-slate-100 bg-white p-6 shadow-sm lg:col-span-2">
+          <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-3">
+            <section className="relative overflow-hidden rounded-3xl border border-slate-100 bg-white p-4 shadow-sm sm:p-6 lg:col-span-2">
               <div className="absolute right-4 top-0 rotate-12 text-7xl text-primary/10">☺</div>
-              <h3 className="mb-4 flex items-center gap-2 font-display text-xl font-bold text-slate-900">
+              <h3 className="mb-4 flex items-center gap-2 font-display text-lg font-bold text-slate-900 sm:text-xl">
                 <span className="text-primary">●</span>
                 今日心情
               </h3>
               <MoodSelector />
             </section>
 
-            <section className="relative flex min-h-[210px] flex-col justify-between overflow-hidden rounded-3xl bg-gradient-to-br from-primary to-orange-400 p-6 text-white shadow-lg">
+            <section className="relative flex min-h-[210px] flex-col justify-between overflow-hidden rounded-3xl bg-gradient-to-br from-primary to-orange-400 p-4 text-white shadow-lg sm:p-6">
               <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-white/20 blur-2xl" />
               <div className="absolute bottom-0 left-0 h-24 w-24 rounded-full bg-black/10 blur-xl" />
 
               <div>
                 <p className="text-xs font-bold uppercase tracking-wider opacity-90">双人挑战</p>
-                <h3 className="mt-2 font-display text-3xl font-bold">今晚一起做饭吧 🍝</h3>
-                <p className="mt-2 text-sm text-white/80">亲手做点好吃的！</p>
+                <h3 className="mt-2 font-display text-2xl font-bold sm:text-3xl">
+                  {todayChallenge.title} {todayChallenge.emoji}
+                </h3>
+                <p className="mt-2 text-sm text-white/80">{todayChallenge.description}</p>
               </div>
 
               <div className="mt-5 flex items-center justify-between">
@@ -755,50 +756,50 @@ export function DashboardPage() {
                 <button
                   type="button"
                   className="rounded-lg bg-white/20 px-3 py-1.5 text-xs font-bold backdrop-blur-sm transition hover:bg-white/30"
-                  onClick={openCreateModal}
+                  onClick={() => router.push("/app/challenges")}
                 >
-                  完成啦！
+                  去打卡
                 </button>
               </div>
             </section>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-            <article className="rounded-2xl border border-slate-100 bg-white p-4 text-center">
-              <p className="font-display text-4xl font-bold text-primary">{spaces.length}</p>
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
+            <article className="rounded-2xl border border-slate-100 bg-white p-3 text-center sm:p-4">
+              <p className="font-display text-3xl font-bold text-primary sm:text-4xl">{spaces.length}</p>
               <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500">空间数量</p>
             </article>
-            <article className="rounded-2xl border border-slate-100 bg-white p-4 text-center">
-              <p className="font-display text-4xl font-bold text-slate-900">{todos.length}</p>
+            <article className="rounded-2xl border border-slate-100 bg-white p-3 text-center sm:p-4">
+              <p className="font-display text-3xl font-bold text-slate-900 sm:text-4xl">{todos.length}</p>
               <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500">总任务数</p>
             </article>
-            <article className="rounded-2xl border border-slate-100 bg-white p-4 text-center">
-              <p className="font-display text-4xl font-bold text-slate-900">{pendingCount}</p>
+            <article className="rounded-2xl border border-slate-100 bg-white p-3 text-center sm:p-4">
+              <p className="font-display text-3xl font-bold text-slate-900 sm:text-4xl">{pendingCount}</p>
               <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500">待办任务</p>
             </article>
-            <article className="rounded-2xl border border-slate-100 bg-white p-4 text-center">
-              <p className="font-display text-4xl font-bold text-slate-900">{completedCount}</p>
+            <article className="rounded-2xl border border-slate-100 bg-white p-3 text-center sm:p-4">
+              <p className="font-display text-3xl font-bold text-slate-900 sm:text-4xl">{completedCount}</p>
               <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500">已完成</p>
             </article>
           </div>
 
           <section id="todo-board" className="mt-1">
-            <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div className="mb-5 flex flex-col gap-4 lg:mb-6 lg:flex-row lg:items-end lg:justify-between">
               <div>
-                <h3 className="font-display text-3xl font-bold text-slate-900">置顶任务</h3>
+                <h3 className="font-display text-2xl font-bold text-slate-900 sm:text-3xl">置顶任务</h3>
                 <p className="mt-1 text-sm text-slate-500">当前空间任务会实时同步给双方</p>
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
                 <button
                   type="button"
-                  className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 transition hover:border-primary hover:text-primary"
+                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 transition hover:border-primary hover:text-primary sm:w-auto"
                   onClick={() => router.push("/app/invite")}
                 >
                   邀请伙伴
                 </button>
                 <button
                   type="button"
-                  className="rounded-xl bg-primary px-4 py-2 text-sm font-bold text-white shadow-md shadow-primary/25 transition hover:opacity-90"
+                  className="w-full rounded-xl bg-primary px-4 py-2 text-sm font-bold text-white shadow-md shadow-primary/25 transition hover:opacity-90 sm:w-auto"
                   onClick={openCreateModal}
                 >
                   新建任务

@@ -50,18 +50,18 @@ export function MoodSelector() {
   const [selectedMoodId, setSelectedMoodId] = useState<MoodId>("loved");
 
   return (
-    <div className="flex flex-wrap gap-4">
+    <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:gap-4">
       {moodOptions.map((mood) => (
         <button
           key={mood.id}
           type="button"
           aria-pressed={selectedMoodId === mood.id}
           onClick={() => setSelectedMoodId(mood.id)}
-          className={`min-w-[100px] flex-1 rounded-2xl border-2 p-4 text-center transition ${
+          className={`min-w-0 rounded-2xl border-2 p-3 text-center transition sm:min-w-[100px] sm:flex-1 sm:p-4 ${
             selectedMoodId === mood.id ? mood.activeClassName : "border-transparent"
           } ${mood.baseClassName}`}
         >
-          <p className="text-3xl">{mood.icon}</p>
+          <p className="text-2xl sm:text-3xl">{mood.icon}</p>
           <p className={`mt-2 text-sm font-bold ${mood.textClassName}`}>{mood.label}</p>
         </button>
       ))}

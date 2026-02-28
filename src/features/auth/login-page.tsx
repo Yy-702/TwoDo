@@ -143,7 +143,7 @@ export function LoginPageClient() {
         <div className="absolute right-10 top-1/2 text-3xl text-[#ec5184]/20">❦</div>
       </div>
 
-      <header className="relative z-10 border-b border-transparent px-6 py-4 lg:px-20">
+      <header className="relative z-10 border-b border-transparent px-4 py-4 sm:px-6 lg:px-20">
         <div className="flex items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <div className="flex size-10 items-center justify-center rounded-full bg-[#ec5184]/10 text-xl text-[#ec5184]">
@@ -180,27 +180,27 @@ export function LoginPageClient() {
 
       <main className="relative z-10 flex flex-1 items-center justify-center px-4 py-8 lg:px-20">
         <div className="flex w-full max-w-[1200px] flex-col items-center gap-12 lg:flex-row lg:gap-20">
-          <section className="order-2 flex flex-1 flex-col items-center gap-6 text-center lg:order-1 lg:items-start lg:text-left">
+          <section className="order-2 flex flex-1 flex-col items-center gap-5 text-center lg:order-1 lg:items-start lg:gap-6 lg:text-left">
             <div className="max-w-xl space-y-4">
-              <h1 className="font-brand text-6xl font-black tracking-wide text-[#ec5184] lg:text-8xl">
+              <h1 className="font-brand text-5xl font-black tracking-wide text-[#ec5184] sm:text-6xl lg:text-8xl">
                 TWODO
               </h1>
-              <h2 className="text-3xl font-black text-[#22171b]">开启你们的甜蜜旅程</h2>
-              <p className="text-lg leading-relaxed text-[#88636f]">
+              <h2 className="text-2xl font-black text-[#22171b] sm:text-3xl">开启你们的甜蜜旅程</h2>
+              <p className="text-base leading-relaxed text-[#88636f] sm:text-lg">
                 在这里，所有的待办都是浪漫的约定。专为情侣设计的共享 To-Do 空间，记录每一个温暖瞬间，规划未来的美好蓝图。
               </p>
             </div>
 
-            <div className="relative mt-4 w-full max-w-[500px] overflow-hidden rounded-3xl border-4 border-white twodo-shadow">
+            <div className="relative mt-2 w-full max-w-[500px] overflow-hidden rounded-3xl border-4 border-white twodo-shadow sm:mt-4">
               <div className="aspect-[4/3] bg-[radial-gradient(circle_at_20%_30%,#ff8dac_0%,#f2769a_30%,#8a6ad8_70%,#4f8ff0_100%)]" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 text-left text-white">
                 <p className="inline-flex rounded-md bg-[#ec5184]/90 px-2 py-1 text-xs font-black">NEXT UP</p>
-                <p className="mt-2 text-2xl font-black">一起去海边看日落 🌊</p>
+                <p className="mt-2 text-xl font-black sm:text-2xl">一起去海边看日落 🌊</p>
               </div>
             </div>
 
-            <div className="mt-2 flex items-center gap-3 text-sm text-[#88636f]">
+            <div className="mt-1 flex items-center gap-3 text-sm text-[#88636f] sm:mt-2">
               <div className="flex -space-x-2">
                 <span className="flex size-8 items-center justify-center rounded-full border-2 border-white bg-[#f5d4de] text-xs">
                   A
@@ -217,11 +217,11 @@ export function LoginPageClient() {
           </section>
 
           <section className="order-1 w-full max-w-[430px] lg:order-2">
-            <div className="relative overflow-hidden rounded-3xl border border-red-50 bg-white p-8 twodo-shadow">
+            <div className="relative overflow-hidden rounded-3xl border border-red-50 bg-white p-5 twodo-shadow sm:p-8">
               <div className="absolute -right-8 -top-8 text-[160px] text-[#ec5184]/5">❤</div>
 
               <div className="relative z-10 text-center">
-                <h3 className="font-brand text-4xl font-extrabold text-[#22171b]">Welcome Back!</h3>
+                <h3 className="font-brand text-3xl font-extrabold text-[#22171b] sm:text-4xl">Welcome Back!</h3>
                 <p className="mt-2 text-sm text-[#88636f]">登录 TWODO，继续书写浪漫篇章</p>
               </div>
 

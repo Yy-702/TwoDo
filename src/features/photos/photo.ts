@@ -3,6 +3,7 @@ import type { Database } from "@/lib/supabase/database.types";
 
 export const SPACE_PHOTO_BUCKET = "space_photos";
 export const SPACE_PHOTO_MAX_BYTES = 8 * 1024 * 1024;
+export const SPACE_PHOTO_CAPTION_MAX_LENGTH = 60;
 
 const SPACE_PHOTO_ALLOWED_TYPES = ["image/png", "image/jpeg", "image/webp"];
 
@@ -15,6 +16,7 @@ export type SpacePhoto = {
   objectPath: string;
   mimeType: string;
   sizeBytes: number;
+  caption: string | null;
   createdAt: string;
   publicUrl: string;
 };
@@ -155,9 +157,23 @@ export function toSpacePhoto(
     objectPath: row.object_path,
     mimeType: row.mime_type,
     sizeBytes: row.size_bytes,
+    caption: row.caption ?? null,
     createdAt: row.created_at,
     publicUrl: getPhotoPublicUrl(supabase, row.object_path),
   };
+}
+
+function normalizePhotoCaption(caption: string | null | undefined): string | null {
+  if (caption === null || caption === undefined) {
+    return null;
+  }
+
+  const trimmed = caption.trim();
+  if (trimmed.length === 0) {
+    return null;
+  }
+
+  return trimmed.slice(0, SPACE_PHOTO_CAPTION_MAX_LENGTH);
 }
 
 function isStorageMissingError(error: { message?: string } | null): boolean {
@@ -211,8 +227,9 @@ export async function uploadSpacePhotoWithRecord(params: {
   spaceId: string;
   userId: string;
   file: File;
+  caption?: string | null;
 }): Promise<PhotoUploadResult> {
-  const { supabase, spaceId, userId, file } = params;
+  const { supabase, spaceId, userId, file, caption } = params;
 
   const validation = validatePhotoFile(file);
   if (!validation.ok) {
@@ -248,6 +265,7 @@ export async function uploadSpacePhotoWithRecord(params: {
       object_path: objectPath,
       mime_type: file.type,
       size_bytes: file.size,
+      caption: normalizePhotoCaption(caption),
     })
     .select("*")
     .single();

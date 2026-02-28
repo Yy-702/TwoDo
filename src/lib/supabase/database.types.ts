@@ -11,6 +11,69 @@ export type TodoPriority = "low" | "medium" | "high";
 export type Database = {
   public: {
     Tables: {
+      anniversaries: {
+        Row: {
+          id: string;
+          space_id: string;
+          title: string;
+          event_date: string;
+          note: string | null;
+          is_yearly: boolean;
+          created_by: string;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          space_id: string;
+          title: string;
+          event_date: string;
+          note?: string | null;
+          is_yearly?: boolean;
+          created_by: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          space_id?: string;
+          title?: string;
+          event_date?: string;
+          note?: string | null;
+          is_yearly?: boolean;
+          created_by?: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      challenge_checkins: {
+        Row: {
+          id: string;
+          space_id: string;
+          challenge_date: string;
+          user_id: string;
+          completed_at: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          space_id: string;
+          challenge_date: string;
+          user_id: string;
+          completed_at?: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          space_id?: string;
+          challenge_date?: string;
+          user_id?: string;
+          completed_at?: string;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
       profiles: {
         Row: {
           id: string;
@@ -91,6 +154,7 @@ export type Database = {
           object_path: string;
           mime_type: string;
           size_bytes: number;
+          caption: string | null;
           created_at: string;
         };
         Insert: {
@@ -100,6 +164,7 @@ export type Database = {
           object_path: string;
           mime_type: string;
           size_bytes: number;
+          caption?: string | null;
           created_at?: string;
         };
         Update: {
@@ -109,6 +174,7 @@ export type Database = {
           object_path?: string;
           mime_type?: string;
           size_bytes?: number;
+          caption?: string | null;
           created_at?: string;
         };
         Relationships: [];

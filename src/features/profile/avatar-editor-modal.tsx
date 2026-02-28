@@ -34,10 +34,10 @@ export function AvatarEditorModal({
   }, [previewUrl]);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
-      <div className="w-full max-w-[440px] overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 p-2 backdrop-blur-sm sm:items-center sm:p-4">
+      <div className="max-h-[90dvh] w-full max-w-[440px] overflow-y-auto rounded-t-3xl border border-slate-200 bg-white p-4 shadow-2xl sm:rounded-3xl sm:p-6">
         <div className="mb-4 flex items-center justify-between">
-          <h3 className="text-2xl font-black text-slate-900">修改头像</h3>
+          <h3 className="text-xl font-black text-slate-900 sm:text-2xl">修改头像</h3>
           <button
             type="button"
             onClick={onClose}
@@ -48,12 +48,12 @@ export function AvatarEditorModal({
           </button>
         </div>
 
-        <div className="flex flex-col items-center gap-4 rounded-2xl border border-slate-100 bg-slate-50 p-5">
+        <div className="flex flex-col items-center gap-4 rounded-2xl border border-slate-100 bg-slate-50 p-4 sm:p-5">
           <UserAvatar
             src={previewUrl ?? currentAvatarUrl}
             name={currentDisplayName}
-            className="size-24"
-            textClassName="text-2xl"
+            className="size-20 sm:size-24"
+            textClassName="text-xl sm:text-2xl"
           />
           <p className="text-sm text-slate-500">支持 PNG/JPEG/WEBP，最大 2MB</p>
 
@@ -101,7 +101,7 @@ export function AvatarEditorModal({
         {localError ? <p className="mt-4 text-sm text-rose-600">{localError}</p> : null}
         {uploadError ? <p className="mt-4 text-sm text-rose-600">{uploadError}</p> : null}
 
-        <div className="mt-6 flex items-center justify-end gap-3">
+        <div className="mt-5 flex items-center justify-end gap-3 sm:mt-6">
           <button
             type="button"
             className="h-11 rounded-full border border-slate-200 bg-white px-5 text-sm font-semibold text-slate-700 transition hover:border-slate-300"

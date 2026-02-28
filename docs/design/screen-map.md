@@ -9,6 +9,8 @@
 | `_10` | Task Edit & Interaction | `/app` 任务编辑弹窗 | 已接入 |
 | `_4` | CoupleToDo - Invite Partner | `/app/invite` | 已接入 |
 | `_5` | TWODO：连结成功页面 | `/app/invite/success` | 已接入 |
+| `_2` | 甜蜜时光 - 照片墙 | `/app/memories` | 已接入 |
+| `_8` | 纪念日与倒计时 | `/app/anniversaries` | 已接入 |
 
 ## 非 P0（本轮不实现）
 
@@ -16,6 +18,4 @@
 | --- | --- | --- |
 | `_3` / `_6` | `/app/profile` | 个人与双人统计页，后续迭代 |
 | `_7` | `/app/wishes` | 心愿清单后续迭代 |
-| `_8` | `/app/anniversaries` | 纪念日后续迭代 |
-| `_2` | `/app/memories` | 照片墙后续迭代 |
 | `_9` | `/app/challenges` | 双人挑战后续迭代 |

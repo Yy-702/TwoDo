@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { UserAvatar } from "@/components/profile/user-avatar";
+import { AppTopbar } from "@/components/layout/app-topbar";
 import { InvitePanel } from "@/features/spaces/invite-panel";
 import {
   deriveCloseSharedSpaceState,
@@ -343,47 +343,21 @@ export function InvitePage() {
     : null;
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#f6f7f8] font-brand text-slate-900">
-      <header className="sticky top-0 z-20 border-b border-slate-200 bg-white px-4 py-4 md:px-10">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <span className="flex size-8 items-center justify-center rounded-full bg-primary/10 text-primary">
-              ❤
-            </span>
-            <h1 className="text-3xl font-extrabold">CoupleToDo</h1>
-          </div>
+    <div className="flex min-h-dvh flex-col bg-[#f6f7f8] font-brand text-slate-900">
+      <AppTopbar
+        activeNav="invite"
+        title="邀请伙伴"
+        subtitle="连接你们的共享空间"
+        currentUserAvatarUrl={currentUserAvatarUrl}
+        currentUserDisplayName={currentUserDisplayName}
+        onSignOut={signOut}
+      />
 
-          <div className="flex flex-1 items-center justify-end gap-8">
-            <nav className="hidden items-center gap-9 text-sm font-medium text-slate-600 md:flex">
-              <button type="button" className="transition-colors hover:text-primary" onClick={() => router.push("/app")}>Home</button>
-              <button type="button" className="transition-colors hover:text-primary" onClick={() => router.push("/app")}>Tasks</button>
-              <button type="button" className="transition-colors hover:text-primary">Memories</button>
-            </nav>
-
-            <div className="flex items-center gap-4">
-              <button
-                type="button"
-                className="h-10 rounded-full bg-slate-100 px-6 text-sm font-bold text-slate-900 transition-colors hover:bg-slate-200"
-                onClick={() => void signOut()}
-              >
-                Log Out
-              </button>
-              <UserAvatar
-                src={currentUserAvatarUrl}
-                name={currentUserDisplayName}
-                className="size-10 ring-2 ring-primary/20"
-                textClassName="text-sm"
-              />
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <main className="flex flex-1 justify-center px-4 py-10 md:px-10">
+      <main className="flex flex-1 justify-center px-4 py-8 md:px-10 md:py-10">
         <div className="flex w-full max-w-[900px] flex-col items-center gap-8">
           <div className="space-y-3 text-center">
-            <h2 className="text-6xl font-black tracking-tight text-slate-900">Invite Partner</h2>
-            <p className="text-lg text-slate-500">
+            <h2 className="text-4xl font-black tracking-tight text-slate-900 md:text-6xl">Invite Partner</h2>
+            <p className="text-base text-slate-500 md:text-lg">
               Who is your other half? Share the magic code to connect.
             </p>
           </div>
@@ -414,7 +388,7 @@ export function InvitePage() {
           {error ? <p className="text-sm text-rose-600">{error}</p> : null}
           {hint ? <p className="text-sm text-emerald-600">{hint}</p> : null}
 
-          <div className="flex gap-6 text-sm text-slate-400">
+          <div className="flex flex-wrap justify-center gap-4 text-sm text-slate-400 md:gap-6">
             <a href="#" className="transition-colors hover:text-primary">Help Center</a>
             <a href="#" className="transition-colors hover:text-primary">Privacy Policy</a>
             <a href="#" className="transition-colors hover:text-primary">Contact Support</a>
