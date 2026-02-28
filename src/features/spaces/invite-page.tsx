@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { AppMobileNav } from "@/components/layout/app-mobile-nav";
 import { AppTopbar } from "@/components/layout/app-topbar";
 import { InvitePanel } from "@/features/spaces/invite-panel";
 import {
@@ -353,7 +354,7 @@ export function InvitePage() {
         onSignOut={signOut}
       />
 
-      <main className="flex flex-1 justify-center px-4 py-8 md:px-10 md:py-10">
+      <main className="flex flex-1 justify-center px-4 py-8 pb-[calc(env(safe-area-inset-bottom)+5.5rem)] md:px-10 md:py-10 lg:pb-10">
         <div className="flex w-full max-w-[900px] flex-col items-center gap-8">
           <div className="space-y-3 text-center">
             <h2 className="text-4xl font-black tracking-tight text-slate-900 md:text-6xl">Invite Partner</h2>
@@ -395,6 +396,8 @@ export function InvitePage() {
           </div>
         </div>
       </main>
+
+      <AppMobileNav activeNav="invite" />
     </div>
   );
 }

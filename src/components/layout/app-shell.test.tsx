@@ -42,6 +42,8 @@ describe("AppShell", () => {
       </AppShell>
     );
 
+    expect(screen.getByTestId("app-mobile-nav")).toBeInTheDocument();
+
     const dashboardLinks = screen.getAllByRole("link", { name: "控制面板" });
     expect(dashboardLinks.some((link) => link.getAttribute("href") === "/app")).toBe(true);
 

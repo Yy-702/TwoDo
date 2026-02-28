@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { AppMobileNav } from "@/components/layout/app-mobile-nav";
 import { AppTopbar } from "@/components/layout/app-topbar";
 import { MemoryFilters } from "@/features/memories/memory-filters";
 import { MemoryMasonry } from "@/features/memories/memory-masonry";
@@ -311,7 +312,7 @@ export function MemoriesPage() {
         onSignOut={signOut}
       />
 
-      <main className="relative mx-auto flex w-full max-w-7xl flex-1 px-4 py-8 sm:px-6 lg:px-8">
+      <main className="relative mx-auto flex w-full max-w-7xl flex-1 px-4 py-8 pb-[calc(env(safe-area-inset-bottom)+5.5rem)] sm:px-6 lg:px-8 lg:pb-8">
         <div className="pointer-events-none absolute left-10 top-10 text-6xl text-[#f06e42]/10">❤</div>
         <div className="pointer-events-none absolute right-20 top-40 text-4xl text-[#f06e42]/10">✦</div>
         <div className="pointer-events-none absolute bottom-20 left-1/4 text-7xl text-[#f06e42]/5">♡</div>
@@ -399,9 +400,11 @@ export function MemoriesPage() {
         />
       </main>
 
-      <footer className="mt-auto border-t border-gray-100 py-6 text-center text-sm text-[#896b61]">
+      <footer className="mt-auto border-t border-gray-100 py-6 pb-[calc(env(safe-area-inset-bottom)+5.5rem)] text-center text-sm text-[#896b61] lg:pb-6">
         <p>© 2024 甜蜜时光 Sweet Moments. Made with ❤ for us.</p>
       </footer>
+
+      <AppMobileNav activeNav="memories" />
     </div>
   );
 }

@@ -12,6 +12,12 @@
 | `_2` | 甜蜜时光 - 照片墙 | `/app/memories` | 已接入 |
 | `_8` | 纪念日与倒计时 | `/app/anniversaries` | 已接入 |
 
+## 手机端导航
+
+- 主功能页（`/app`、`/app/challenges`、`/app/memories`、`/app/anniversaries`、`/app/invite`）统一使用底部导航。
+- `AppTopbar` 顶部横向导航在手机端隐藏，避免与底部导航重复。
+- `/app/invite/success` 维持沉浸式页面，不显示底部导航。
+
 ## 非 P0（本轮不实现）
 
 | 设计目录 | 建议路由 | 说明 |

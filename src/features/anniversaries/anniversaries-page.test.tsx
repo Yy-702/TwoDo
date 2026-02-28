@@ -234,10 +234,15 @@ describe("AnniversariesPage", () => {
 
     expect(await screen.findByRole("heading", { name: "纪念日列表" })).toBeInTheDocument();
     expect(await screen.findByRole("heading", { name: "回忆时间线" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "纪念日" })).toHaveAttribute(
-      "href",
-      "/app/anniversaries"
-    );
+    expect(screen.getByTestId("app-mobile-nav")).toBeInTheDocument();
+
+    const anniversaryLinks = screen.getAllByRole("link", { name: "纪念日" });
+    expect(
+      anniversaryLinks.some((link) => link.getAttribute("href") === "/app/anniversaries")
+    ).toBe(true);
+
+    const memoryLinks = screen.getAllByRole("link", { name: "回忆墙" });
+    expect(memoryLinks.some((link) => link.getAttribute("href") === "/app/memories")).toBe(true);
     expect(screen.getAllByText("恋爱纪念日").length).toBeGreaterThan(0);
   });
 

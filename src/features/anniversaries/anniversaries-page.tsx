@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
+import { AppMobileNav } from "@/components/layout/app-mobile-nav";
 import { AppTopbar } from "@/components/layout/app-topbar";
 import { AnniversaryEditorModal } from "@/features/anniversaries/anniversary-editor-modal";
 import {
@@ -253,7 +254,7 @@ export function AnniversariesPage() {
         }
       />
 
-      <main className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
+      <main className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col gap-8 px-4 py-8 pb-[calc(env(safe-area-inset-bottom)+5.5rem)] sm:px-6 lg:px-8 lg:pb-8">
         <div className="pointer-events-none absolute left-10 top-12 text-6xl text-[#f06e42]/10">❤</div>
         <div className="pointer-events-none absolute right-20 top-40 text-5xl text-[#f06e42]/10">✦</div>
         <div className="pointer-events-none absolute bottom-24 left-1/3 text-7xl text-[#f06e42]/5">♡</div>
@@ -400,6 +401,8 @@ export function AnniversariesPage() {
 
         {error ? <p className="relative z-10 text-sm font-medium text-rose-600">{error}</p> : null}
       </main>
+
+      <AppMobileNav activeNav="anniversaries" />
 
       {createModalOpen ? (
         <AnniversaryEditorModal

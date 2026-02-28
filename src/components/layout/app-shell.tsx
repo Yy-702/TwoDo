@@ -1,12 +1,13 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { AppMobileNav, type AppNavKey } from "@/components/layout/app-mobile-nav";
 import { AppTopbar } from "@/components/layout/app-topbar";
 import { UserAvatar } from "@/components/profile/user-avatar";
 
 type AppShellProps = {
   title: string;
   subtitle: string;
-  activeNav: "dashboard" | "invite" | "challenges" | "memories" | "anniversaries";
+  activeNav: AppNavKey;
   actions?: ReactNode;
   currentUserAvatarUrl?: string | null;
   currentUserDisplayName?: string | null;
@@ -22,14 +23,6 @@ function navClass(active: boolean) {
   }
 
   return "flex items-center gap-3 rounded-2xl px-4 py-3 text-slate-600 transition-colors hover:bg-slate-50";
-}
-
-function mobileNavClass(active: boolean) {
-  if (active) {
-    return "flex min-w-0 flex-1 items-center justify-center rounded-2xl bg-primary px-3 py-2 text-xs font-bold text-white shadow-md shadow-primary/20";
-  }
-
-  return "flex min-w-0 flex-1 items-center justify-center rounded-2xl px-3 py-2 text-xs font-semibold text-slate-600 transition-colors hover:bg-slate-50";
 }
 
 export function AppShell({
@@ -140,31 +133,7 @@ export function AppShell({
         </section>
       </main>
 
-      <nav className="fixed inset-x-0 bottom-0 z-30 border-t border-slate-200 bg-white/95 px-3 py-3 backdrop-blur lg:hidden">
-        <div className="mx-auto flex max-w-xl items-center gap-2">
-          <Link href="/app" className={mobileNavClass(activeNav === "dashboard")}>
-            控制面板
-          </Link>
-          <Link href="/app#todo-board" className={mobileNavClass(false)}>
-            任务清单
-          </Link>
-          <Link href="/app/invite" className={mobileNavClass(activeNav === "invite")}>
-            邀请伙伴
-          </Link>
-          <Link href="/app/challenges" className={mobileNavClass(activeNav === "challenges")}>
-            双人挑战
-          </Link>
-          <Link href="/app/memories" className={mobileNavClass(activeNav === "memories")}>
-            回忆墙
-          </Link>
-          <Link
-            href="/app/anniversaries"
-            className={mobileNavClass(activeNav === "anniversaries")}
-          >
-            纪念日
-          </Link>
-        </div>
-      </nav>
+      <AppMobileNav activeNav={activeNav} />
     </div>
   );
 }

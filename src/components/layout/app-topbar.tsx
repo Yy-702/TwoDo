@@ -1,16 +1,10 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { APP_NAV_ITEMS, type AppNavKey } from "@/components/layout/app-mobile-nav";
 import { UserAvatar } from "@/components/profile/user-avatar";
 
-export type AppTopbarActiveNav =
-  | "dashboard"
-  | "invite"
-  | "challenges"
-  | "memories"
-  | "anniversaries";
-
 type AppTopbarProps = {
-  activeNav: AppTopbarActiveNav;
+  activeNav: AppNavKey;
   title?: string;
   subtitle?: string;
   currentUserAvatarUrl?: string | null;
@@ -43,44 +37,12 @@ export function AppTopbar({
   onSignOut,
   rightActions,
 }: AppTopbarProps) {
-  const navItems: NavItem[] = [
-    {
-      id: "dashboard",
-      href: "/app",
-      label: "控制面板",
-      isActive: activeNav === "dashboard",
-    },
-    {
-      id: "todos",
-      href: "/app#todo-board",
-      label: "任务清单",
-      isActive: false,
-    },
-    {
-      id: "invite",
-      href: "/app/invite",
-      label: "邀请伙伴",
-      isActive: activeNav === "invite",
-    },
-    {
-      id: "challenges",
-      href: "/app/challenges",
-      label: "双人挑战",
-      isActive: activeNav === "challenges",
-    },
-    {
-      id: "memories",
-      href: "/app/memories",
-      label: "回忆墙",
-      isActive: activeNav === "memories",
-    },
-    {
-      id: "anniversaries",
-      href: "/app/anniversaries",
-      label: "纪念日",
-      isActive: activeNav === "anniversaries",
-    },
-  ];
+  const navItems: NavItem[] = APP_NAV_ITEMS.map((item) => ({
+    id: item.id,
+    href: item.href,
+    label: item.label,
+    isActive: item.id === activeNav,
+  }));
 
   const shouldRenderUserArea =
     onSignOut !== undefined || currentUserAvatarUrl !== null || currentUserDisplayName !== null;
@@ -127,7 +89,7 @@ export function AppTopbar({
           </div>
         </div>
 
-        <nav className="flex items-center gap-2 overflow-x-auto pb-0.5">
+        <nav className="hidden items-center gap-2 overflow-x-auto pb-0.5 md:flex">
           {navItems.map((item) => (
             <Link
               key={item.id}

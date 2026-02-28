@@ -60,10 +60,16 @@ npm run dev
 
 - `/login`
 - `/app`
+- `/app/challenges`
 - `/app/memories`
 - `/app/anniversaries`
 - `/app/invite`
 - `/app/invite/success`
+
+## 手机端导航说明
+
+- `/app`、`/app/challenges`、`/app/memories`、`/app/anniversaries`、`/app/invite` 统一显示底部导航。
+- `/app/invite/success` 保持沉浸式，不显示底部导航。
 
 ## 测试
 

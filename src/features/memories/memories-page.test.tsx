@@ -217,14 +217,18 @@ describe("MemoriesPage", () => {
 
     await screen.findByText("春日散步");
     await screen.findByText("我们的瞬间");
-    expect(screen.getByRole("link", { name: "邀请伙伴" })).toHaveAttribute(
-      "href",
-      "/app/invite"
-    );
-    expect(screen.getByRole("link", { name: "回忆墙" })).toHaveAttribute(
-      "href",
-      "/app/memories"
-    );
+    expect(screen.getByTestId("app-mobile-nav")).toBeInTheDocument();
+
+    const inviteLinks = screen.getAllByRole("link", { name: "邀请伙伴" });
+    expect(inviteLinks.some((link) => link.getAttribute("href") === "/app/invite")).toBe(true);
+
+    const memoryLinks = screen.getAllByRole("link", { name: "回忆墙" });
+    expect(memoryLinks.some((link) => link.getAttribute("href") === "/app/memories")).toBe(true);
+
+    const anniversaryLinks = screen.getAllByRole("link", { name: "纪念日" });
+    expect(
+      anniversaryLinks.some((link) => link.getAttribute("href") === "/app/anniversaries")
+    ).toBe(true);
 
     const disabledCategoryButton = screen.getByRole("button", {
       name: "✈ 旅行（即将支持）",
